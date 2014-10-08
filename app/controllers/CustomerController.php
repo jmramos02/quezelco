@@ -22,8 +22,9 @@ class CustomerController extends \BaseController {
 	 */
 	public function index()
 	{
+		$search_key = '';
 		$accounts = $this->account->paginate();
-		return View::make('admin.customer.index')->with('accounts',$accounts);
+		return View::make('admin.customer.index', compact('accounts', 'search_key'));
 	}
 
 
@@ -110,9 +111,9 @@ class CustomerController extends \BaseController {
 	}
 
 	public function search(){
-		$searchKey = Input::get('search_key');
-		$accounts = $this->account->search($searchKey);
-		return View::make('admin.customer.index')->with('accounts',$accounts);
+		$search_key = Input::get('search_key');
+		$accounts = $this->account->search($search_key);
+		return View::make('admin.customer.index', compact('accounts', 'search_key'));
 	}
 
 	public function changeStatus($id){

@@ -15,8 +15,9 @@ class LocationController extends \BaseController {
 	 */
 	public function index()
 	{
+		$search_key = '';
 		$locations = $this->location->getAllPaginated();
-		return View::make('admin.location.index')->with('locations',$locations);
+		return View::make('admin.location.index', compact('locations', 'search_key'));
 	}
 
 
@@ -122,10 +123,18 @@ class LocationController extends \BaseController {
 	}
 
 	public function search(){
-		$searchKey = Input::get('search_key');
-		$result = $this->location->search($searchKey);
+		$search_key = Input::get('search_key');
 
-		return View::make('admin.location.index')->with('locations',$result);
+		if($search_key == '')
+		{
+			$locations = $this->location->getAllPaginated();
+		}
+		else
+		{
+			$locations = $this->location->search($search_key);
+		}
+
+		return View::make('admin.location.index', compact('locations', 'search_key'));
 	}
 
 }

@@ -17,7 +17,7 @@
 			</div>
 		@endif
 		<div class="row">
-		{{Form::open(array('url' => 'admin/account/search'))}}
+		{{Form::open(array('url' => 'admin/account/search', 'method' => 'get'))}}
 			<div class="col-md-7 options-left">
 				<form role="form" action="">
 					<div class="form-group">
@@ -83,7 +83,7 @@
 			   @endforeach
 			  </tbody>
 			</table>
-			{{$accounts->links()}}
+			{{$accounts->appends(array('search_key' => $search_key))->links()}}
 				<h3>Send Textblast to All Enrolled Accounts</h3>
 				{{Form::open(array('url' => 'admin/accounts/textblast'))}}
 					<div class="error">{{$errors->first('message')}}</div>

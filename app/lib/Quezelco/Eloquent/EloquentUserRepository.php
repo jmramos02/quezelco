@@ -59,7 +59,7 @@ class EloquentUserRepository implements UserRepository{
 					 	array($query,$query,$query,$query,$this->auth->getCurrentUser()->username))->paginate(10);*/
 
 		$users = User::with('locations')->whereRaw('(username LIKE ? or first_name LIKE ? or last_name LIKE ?) and username != ?',
-				 array($query,$query,$query,$this->auth->getCurrentUser()->username))->paginate(10);
+				 array($query,$query,$query,$this->auth->getCurrentUser()->username))->paginate(5);
 		return ($users);
 	}
 	

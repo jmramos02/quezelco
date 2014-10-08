@@ -34,8 +34,8 @@ use Quezelco\Interfaces\RoutesRepository;
  	}
 
  	public function search($searchKey){
- 		$newKey = "%$searchKey%";
- 		return QRoute::whereRaw('route_code LIKE ? OR route_name LIKE ?',array($newKey, $newKey))->paginate($this->recordsPerPage);
+ 		$query = "%$searchKey%";
+ 		return QRoute::whereRaw('route_code LIKE ? OR route_name LIKE ?',array($query, $query))->paginate($this->recordsPerPage);
  	}
 
  	public function paginate($routes){

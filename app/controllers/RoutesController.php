@@ -18,9 +18,10 @@ class RoutesController extends \BaseController {
 	 */
 	public function index()
 	{
+		$search_key = '';
 		$routes = $this->routes->all();
 		$locations = $this->setLocationDropDown();
-		return View::make('admin.routes.index')->with('routes',$routes)->with('locations',$locations);
+		return View::make('admin.routes.index', compact('routes', 'locations', 'search_key'));
 	}
 
 
@@ -120,11 +121,19 @@ class RoutesController extends \BaseController {
 	}
 
 	public function search(){
-		$searchKey = Input::get('search_key');
-		$routes = $this->routes->search($searchKey);
+		$search_key = Input::get('search_key');
 
+		if($search_key == '')
+		{
+			$routes = $this->routes->all();
+		}
+		else
+		{
+			$routes = $this->routes->search($search_key);
+		}
 		$locations = $this->setLocationDropDown();
-		return View::make('admin.routes.index')->with('routes',$routes)->with('locations',$locations);
+		/*return View::make('admin.routes.index')->with('routes',$routes)->with('locations',$locations);*/
+		return View::make('admin.routes.index', compact('routes', 'locations', 'search_key'));
 	}
 
 	private function setLocationDropDown(){

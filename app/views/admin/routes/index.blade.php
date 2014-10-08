@@ -19,7 +19,7 @@
 			</div>
 		@endif
 		<div class="row">
-		{{Form::open(array('url' => 'admin/routes/search'))}}
+		{{Form::open(array('url' => 'admin/routes/search', 'method' => 'get'))}}
 			<div class="col-md-7 options-left">
 				<form role="form" action="">
 					<div class="form-group">
@@ -66,7 +66,8 @@
 				   @endforeach
 				  </tbody>
 				</table>
-				{{$routes->links()}}
+				
+				{{ $routes->appends(array('search_key' => $search_key))->links() }}
 				</div>
 				<div class="col-md-5">
 					{{Form::open(array('array' => 'admin/routes'))}}

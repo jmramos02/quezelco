@@ -19,7 +19,7 @@
 			</div>
 		@endif
 		<div class="row">
-		{{Form::open(array('url' => 'admin/location/search'))}}
+		{{Form::open(array('url' => 'admin/location/search', 'method' => 'get'))}}
 			<div class="col-md-7 options-left">
 				<div class="form-group">
 						<div class="col-md-9">
@@ -64,7 +64,7 @@
 					   @endforeach
 					  </tbody>
 					</table>
-					{{$locations->links()}}
+					{{ $locations->appends(array('search_key' => $search_key))->links() }}
 				</div>
 					
 				</div>

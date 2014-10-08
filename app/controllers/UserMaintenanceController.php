@@ -66,7 +66,7 @@ class UserMaintenanceController extends BaseController{
 	public function searchUser(){
 		$search_key = Input::get('search_key');
 		if($search_key == ''){
-			$users = $this->user->paginate(10);
+			$users = $this->user->paginate(5);
 		}else{
 			$users = $this->user->advanceSearch($search_key);
 		}
