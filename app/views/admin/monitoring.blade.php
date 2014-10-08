@@ -10,6 +10,7 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<div class="row">
 				<div class="col-md-7 options-left">
 					<form role="form" action="">
@@ -80,63 +81,14 @@
 		</div>
 
 		<div class="row">
+=======
+		<div class="row">	
+>>>>>>> 07e18dfd7955b86ac7236d29c12f93981ca11bd1
 			<div class="col-md-12">
-				<div class="table-responsive">
-					<table class="table table-striped">
-					  <thead>
-					    <tr>
-					      <th>#</th>
-					      <th>Meter ID</th>
-					      <th>Area</th>
-					      <th>Account ID</th>
-					      <th>Name</th>
-					      <th>Previous</th>
-					      <th>Present</th>
-					      <th>Others</th>
-					      <th>Others</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr>
-					      <td>Content Goes Here</td>
-					      <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-					      <td>Content Goes Here</td>
-					      <td>Content Goes Here</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					    </tr>
-
-					    <tr>
-					      <td>Content Goes Here</td>
-					      <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-					      <td>Content Goes Here</td>
-					      <td>Content Goes Here</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					    </tr>
-					    <tr>
-					      <td>Content Goes Here</td>
-					      <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-					      <td>Content Goes Here</td>
-					      <td>Content Goes Here</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					      <td>Sample</td>
-					    </tr>
-					  </tbody>
-					</table>
-				</div>
-				
+				<h6>Billing Statistics</h6>
+				<p class = "notification">Showing this year's billing statistics</p>
+				<canvas id="myChart" width="200" height="200"></canvas>
 			</div>
 		</div>
-
-	</div>
+		{{HTML::script('scripts/chart.js')}}
 @stop

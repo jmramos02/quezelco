@@ -7,6 +7,26 @@
 		<div class="container index-container">
 			<div class="col-md-8">
 					<h3>User Logs</h3>
+					{{Form::open(array('url' => 'admin/home'))}}
+					<div class="col-md-7 options-left">
+					<form role="form" action="">
+						<div class="form-group">
+							<div class="col-md-9">
+								<form role="form">
+								  <div class="form-group">
+								    <div class="input-group">
+								    	<div class="input-group-addon"><i class="fa fa-search"></i></div>
+								    	{{Form::text('search_key','',array('class' => 'form-control','id' => 'search-user-logs', 'placeholder' => 'Search'))}}
+								    </div>
+								  </div>
+								</form>
+							</div>
+							<div class="col-md-3 search-btn-container">
+									{{Form::submit('Search',array('class' => 'btn btn-primary'))}}
+							</div>
+						</div>
+					</div>
+					{{Form::close()}}
 						<div class="table-responsive">
 							<table class="table table-striped">
 							<thead>

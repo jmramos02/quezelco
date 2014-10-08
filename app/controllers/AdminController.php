@@ -21,6 +21,18 @@ class AdminController extends BaseController{
 		return View::make('admin.index')->with('logs', $logs);
 	}
 
+	public function searchLogs()
+	{
+		$search_key = Input::get('search_key');
+		if($search_key == ''){
+			$logs = $this->logger->all()->paginate(10);
+		}else{
+			$logs = $this->logger->searchLogs($search_key);
+		}
+
+		return View::make('admin.index')->with('logs', $logs);
+	}
+
 	public function showCashier(){
 		return View::make('admin.cashier');
 	}

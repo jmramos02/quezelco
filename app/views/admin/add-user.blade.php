@@ -35,7 +35,7 @@
 					{{Form::select('location',$locations)}}
 					<div class="large-5 columns options-right">
 						{{Form::submit('Add User',array('class' => 'tiny button add-customer'))}}
-						<a href="/admin/user-maintenance" class="cancel-button">Cancel</a>
+						{{HTML::link('/admin/user-maintenance','Cancel', array('class'=>'cancel-button'))}}
 					</div>
 			{{Form::close()}}
 		</div>

@@ -21,6 +21,7 @@ class UserMaintenanceController extends BaseController{
 	public function showUserMaintenance(){
 		$users = $this->user->paginate(10);
 		return View::make('admin.user-maintenance')->with('users', $users);
+
 	}
 
 	public function showAddUser(){
@@ -68,6 +69,7 @@ class UserMaintenanceController extends BaseController{
 		}else{
 			$users = $this->user->advanceSearch($search_key);
 		}
+		
 		return View::make('admin.user-maintenance')->with('users', $users);
 	}
 	public function showEditUser($search_key){

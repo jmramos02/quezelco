@@ -18,7 +18,7 @@ class EloquentRatesRepository implements RatesRepository{
 		$rates->system_loss_charge = $inputs['system_loss_charge'];
 		$rates->dist_system_charge = $inputs['dist_system_charge'];
 		$rates->retail_end_user_charge = $inputs['retail_end_user_charge'];
-		$rates->retail_customer_charge = $inputs['retail_end_user_charge'];
+		$rates->retail_customer_charge = $inputs['retail_customer_user_charge'];
 		$rates->lifeline_subsidy = $inputs['lifeline_subsidy'];
 		$rates->prev_yrs_adj_pwr_cost = $inputs['prev_yrs_adj_pwr_cost'];
 		$rates->contribution_for_capex = $inputs['contribution_for_capex'];
