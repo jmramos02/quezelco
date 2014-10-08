@@ -19,7 +19,7 @@
 			</div>
 		@endif
 		<div class="row">
-		{{Form::open(array('url' => 'admin/search-user'))}}
+		{{Form::open(array('url' => 'admin/search-user', 'method' => 'get'))}}
 			<div class="col-md-7 options-left">
 				<form role="form" action="">
 					<div class="form-group">

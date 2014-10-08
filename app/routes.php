@@ -119,7 +119,7 @@ Route::post('/admin/home','AdminController@searchLogs');
 Route::put('/admin/update-user/{id}','UserMaintenanceController@modifyUser');
 Route::get('/admin/activation-user/{id}','UserMaintenanceController@activation');
 Route::post('/admin/add-user','UserMaintenanceController@saveUser');
-Route::post('/admin/search-user','UserMaintenanceController@searchUser');
+Route::get('/admin/search-user','UserMaintenanceController@searchUser');
 Route::get('/admin/edit-user/{search_key}','UserMaintenanceController@showEditUser');
 Route::post('/admin/wheeling-rates','AdminController@saveWheelingRates');
 

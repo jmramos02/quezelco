@@ -70,7 +70,7 @@ class UserMaintenanceController extends BaseController{
 			$users = $this->user->advanceSearch($search_key);
 		}
 		
-		return View::make('admin.user-maintenance')->with('users', $users);
+		return View::make('admin.user-maintenance', compact('users','search_key'));
 	}
 	public function showEditUser($search_key){
 		$roles = $this->group->all();
