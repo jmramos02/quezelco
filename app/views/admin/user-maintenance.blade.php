@@ -111,7 +111,7 @@
 			   @endforeach
 			  </tbody>
 			</table>
-			{{$users->links()}}
+			{{ $users->appends(array('search_key' => $search_key))->links() }}
 		</div>
 	</div>
 @stop
