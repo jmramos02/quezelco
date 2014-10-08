@@ -16,7 +16,7 @@
 						<div class="form-group">
 							<div class="col-md-3">
 								<label for="month"><h6>Month:</h6></label>
-								<select class="form-control" value="Aug">
+								<select value="Aug">
 									<option value="jan">January</option>
 									<option value="feb">February</option>
 									<option value="mar">March</option>
@@ -34,7 +34,7 @@
 							
 							<div class="col-md-3">
 								<label for="year"><h6>Year:</h6></label>
-								<select class="form-control" value="2014">
+								<select value="2014">
 									<option value="2011">2011</option>
 									<option value="2012">2012</option>
 									<option value="2013">2013</option>
@@ -44,7 +44,7 @@
 
 							<div class="col-md-3">
 								<label for="area"><h6>Area:</h6></label>
-								<select class="form-control" value="All">
+								<select value="All">
 									<option>Area 1</option>
 									<option>Area 2</option>
 									<option>Area 3</option>
@@ -60,10 +60,10 @@
 						</div>
 					</form>
 				</div>
-				<div class="col-md-5 options-right">
+				<!--<div class="col-md-5 options-right">
 					<button class="btn btn-primary"><a href="add-customer.html"><i class="fa fa-plus"></i> Add Customer</a></button>
 				</div>
-				<!-- <div class="large-6 columns options-right">
+				 <div class="large-6 columns options-right">
 					<button class="button tiny">Add Customer</button>
 					<label>Page:</label>
 					<select name="page" id="page">

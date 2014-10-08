@@ -8,6 +8,7 @@ h1 {
 
 h2 {
 	font-size: 2.5em;
+	color: #3276b1;
 }
 
 h3 {
@@ -26,7 +27,20 @@ h6 {
 	font-size: 1.3em;
 }
 
+ul.dropdown-menu {
+	background: #26A65B;
+}
 
+ul.dropdown-menu li a:hover, a.dropdown-toggle:hover, a.dropdown-toggle:active,
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, 
+.navbar-default .navbar-nav>.open>a:focus {
+	background: #1E824C;
+}
+
+span.caret {
+	border-top-color: #fff !important;
+	border-bottom-color: #fff !important;
+}
 table th {
 	background: #26A65B;
 	color: #fff !important;
