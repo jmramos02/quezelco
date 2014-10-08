@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'quezelco',
 			'username'  => 'root',
-			'password'  => 'unix',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
