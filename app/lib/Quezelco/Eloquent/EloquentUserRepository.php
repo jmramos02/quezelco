@@ -53,13 +53,15 @@ class EloquentUserRepository implements UserRepository{
 	public function advanceSearch($searchKey){
 		$query = "%$searchKey%";
 
-		/*$users = User::join('user_location', 'users.id', '=', 'user_location.user_id')
-					 ->join('locations', 'user_location.location_id', '=', 'locations.id')
+		$users = User::leftJoin('user_location', 'users.id', '=', 'user_location.user_id')
+					 ->leftJoin('locations', 'user_location.location_id', '=', 'locations.id')
 					 ->whereRaw('(locations.location_name LIKE ? or users.last_name LIKE ? or users.first_name LIKE ? or username LIKE ?) and username != ?', 
-					 	array($query,$query,$query,$query,$this->auth->getCurrentUser()->username))->paginate(10);*/
+					 	array($query,$query,$query,$query,$this->auth->getCurrentUser()->username))
+					 ->select('users.id as id', 'username', 'last_name', 'first_name', 'contact_number', 'last_login')
+					 ->paginate(5);
 
-		$users = User::with('locations')->whereRaw('(username LIKE ? or first_name LIKE ? or last_name LIKE ?) and username != ?',
-				 array($query,$query,$query,$this->auth->getCurrentUser()->username))->paginate(5);
+		/*$users = User::with('locations')->whereRaw('(username LIKE ? or first_name LIKE ? or last_name LIKE ?) and username != ?',
+				 array($query,$query,$query,$this->auth->getCurrentUser()->username))->paginate(5);*/
 		return ($users);
 	}
 	
