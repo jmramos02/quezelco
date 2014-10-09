@@ -17,7 +17,7 @@ class BillTable extends Migration {
 			$table->integer('account_id')->unsigned();
 			$table->date('due_date');
 			$table->tinyInteger('payment_status');
-			$table->decimal('total_payment', 10, 4);
+			/*$table->decimal('total_payment', 10, 4);*/
 			$table->date('start_date');
 			$table->date('end_date');
 			$table->timestamps();

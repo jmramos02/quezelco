@@ -27,6 +27,7 @@
 						</div>
 					</div>
 					{{Form::close()}}
+					<div class="col-md-12">
 						<div class="table-responsive">
 							<table class="table table-striped">
 							<thead>
@@ -55,9 +56,8 @@
 						</table>
 					</div>
 					{{$logs->links()}}
+					</div>		
 			</div>
-					
-			
 			
 			<div class="col-md-4">
 				<h3>Notifications</h3>

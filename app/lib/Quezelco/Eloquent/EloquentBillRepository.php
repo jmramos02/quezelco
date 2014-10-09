@@ -38,8 +38,8 @@ class EloquentBillRepository implements BillRepository{
 		
 		$consumed = $account->current_reading - $account->previous_reading;
 
-		$sum = 0;
-		$sum += $rates->generation_system_charge * $consumed;
+		/*$sum = 0;
+		$sum += $rates->generation_system_charge * $consumed;	
 		$sum += $rates->transmission_system_charge * $consumed;
 		$sum += $rates->system_loss_charge * $consumed;
 		$sum += $rates->dist_system_charge * $consumed;
@@ -60,7 +60,9 @@ class EloquentBillRepository implements BillRepository{
 		$sum = $sum + $penalty;
 		$sum += 112;
 
-		$bill->total_payment = $sum;
+
+
+		$bill->total_payment = $sum;*/
 
 		$bill->save();
 
