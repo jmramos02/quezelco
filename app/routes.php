@@ -160,3 +160,5 @@ Route::get('consumer/logout','AuthController@logout');
 
 /*Ajax routes*/
 Route::get('admin/ajax/payments-annual/{year}','AjaxController@paymentsAnnual');
+Route::get('admin/ajax/customer-status','AjaxController@customerStatus');
+Route::get('admin/ajax/bill-status','AjaxController@billingStatus');
