@@ -20,8 +20,9 @@ class BillingController extends \BaseController {
 	}
 	public function index()
 	{
-		$bills = $this->bill->paginate();
-		return View::make('admin.billing.index')->with('bills',$bills);
+        $search_key = '';
+		$bills = $this->bill->search($search_key);
+		return View::make('admin.billing.index', compact('bills', 'search_key'));
 	}
 
 
@@ -93,6 +94,14 @@ class BillingController extends \BaseController {
 	{
 		//
 	}
+
+    public function search()
+    {
+        $search_key = Input::get('searchKey');
+        $bills = $this->bill->search($search_key);
+
+        return View::make('admin.billing.index', compact('bills', 'search_key'));
+    }
 
 	public function enterReading($id){
 		$current_date = Input::get('start_date');
