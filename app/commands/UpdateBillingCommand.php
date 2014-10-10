@@ -47,15 +47,17 @@ class UpdateBillingCommand extends Command {
 				if(!is_null($bill)){
 					$carbonDate = Carbon::parse($bill->due_date);
 					$dateDiff = $carbonDate->diffInDays(Carbon::now());
-					$this->info($dateDiff);
-					if($dateDiff <= 9){
+					if($carbonDate->lte(Carbon::now())){
+						if($dateDiff >= 4 || $dateDiff < 10){
 						$bill->payment_status = 2;
-					}else if($dateDiff >= 10){
-						$bill->payment_status = 3;
-						$account->status = 0;
+						}else{
+							$bill->payment_status = 3;
+							$account->status = 0;
+						}
+						$bill->save();
+						$account->save();
 					}
-					$bill->save();
-					$account->save();
+					
 				}
 
 			}
