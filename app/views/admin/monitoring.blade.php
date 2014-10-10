@@ -20,5 +20,10 @@
 				<canvas id="bill-status" height="300" height="300"></canvas>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-6">
+				Hey Jay
+			</div>
+		</div>
 	</div>
 @stop

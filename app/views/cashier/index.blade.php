@@ -9,7 +9,7 @@
 	<div class="container">
 		<h2>Cashier</h2>
 		<div class="col-md-12">
-			{{Form::open(array('url' =>'cashier/payment/search-oebr'))}}
+			{{Form::open(array('url' =>'cashier/payment/search-oebr', 'method' => 'get'))}}
 			<div class="error">{{$errors->first('oebr')}}</div>
 			<div class="col-md-12">
 				<h6>OEBR</h6>

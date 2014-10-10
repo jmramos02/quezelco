@@ -35,4 +35,8 @@ class AjaxController extends BaseController{
 		$return[3] = $disconnection;
 		return Response::json($return);
 	}
+
+	public function logsStatus(){
+
+	}
 }
