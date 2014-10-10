@@ -145,7 +145,7 @@ Route::resource('admin/billing','BillingController');
 /*CASHIERING*/
 Route::get('cashier/home','CashierController@showHome');
 Route::get('cashier/logout', 'AuthController@logout');
-Route::post('cashier/payment/search-oebr','CashierController@showOEBR');
+Route::get('cashier/payment/search-oebr','CashierController@showOEBR');
 Route::post('cashier/accept-payment/{id}','CashierController@acceptPayment');
 
 /*COLLECTOR*/
