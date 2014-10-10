@@ -60,8 +60,6 @@ class UpdateBillingCommand extends Command {
 
 			}
 		}
-		exit;
-
 	}
 
 	/**

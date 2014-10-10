@@ -29,7 +29,7 @@
 			</div>
 			<div class="col-md-4">
 				<h6>Total Due</h6>
-				{{Form::text('due_payment', number_format($bill->total_payment,2),array('class' => 'form-control', 'id' => 'change', 'readonly' => 'true'))}}
+				{{Form::text('due_payment', number_format($payment,2),array('class' => 'form-control', 'id' => 'change', 'readonly' => 'true'))}}
 			</div>
 			 <div class="col-md-4">
 				<h6>Enter Payment</h6>

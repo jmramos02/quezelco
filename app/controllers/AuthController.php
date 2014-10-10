@@ -67,4 +67,15 @@ class AuthController extends BaseController{
 			return 'consumer/home';
 		}
 	}
+
+	public function showLoginForm(){
+		if(Sentry::check()){
+			$user = $this->auth->getCurrentUser();
+			$returnUrl = $this->redirectToRoleUrl($user);
+			return Redirect::to($returnUrl);
+		}else{
+			return View::make('login');	
+		}
+		
+	}
 }

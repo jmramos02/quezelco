@@ -92,13 +92,8 @@ Route::when('consumer-area-development/*', 'cad');
 Route::when('admin/*', 'admin');
 
 /*-----Routing------*/
-Route::get('/', function()
-{
-	return View::make('login');
-});
-Route::get('/index',function(){
-	return View::make('login');
-});
+Route::get('/','AuthController@showLoginForm');
+Route::get('/index','AuthController@showLoginForm');
 
 /* Controller Routes */
 Route::post('/index','AuthController@validateLogin');

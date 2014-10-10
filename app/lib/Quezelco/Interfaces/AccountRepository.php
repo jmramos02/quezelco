@@ -9,4 +9,5 @@ interface AccountRepository{
 	public function updateAccount($account, $inputs);
 	public function changeStatus($account);
 	public function findAccountsByUser($user);
+	public function findByOebr($oebr);
 }

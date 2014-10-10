@@ -9,7 +9,7 @@ class AccountTableSeeder extends Seeder{
 		$account->oebr_number = '2014D700054444';
 		$account->user_id = 6;
 		$account->route_id = 16;
-		$account->billing_address = 'Jeju Island';
+		$account->billing_address = 'PyongYang';
 		$account->current_reading = 0;
 		$account->previous_reading = 0;
 		$account->senior = false;

@@ -2,11 +2,15 @@
 
 use Quezelco\Interfaces\BillRepository as Bill;
 use Quezelco\Interfaces\AuthRepository as Auth;
+use Quezelco\Interfaces\RatesRepository as Rate;
+use Quezelco\Interfaces\AccountRepository as Account;
 
 class CashierController extends BaseController{
-	public function __construct(Bill $bill, Auth $auth){
+	public function __construct(Bill $bill, Auth $auth, Rate $rate, Account $account){
 		$this->auth = $auth;
 		$this->bill = $bill;
+		$this->rate = $rate;
+		$this->account = $account;
 	}
 	public function showHome(){
 		return View::make('cashier.index');
@@ -24,7 +28,36 @@ class CashierController extends BaseController{
 				Session::flash('message','There are no pending dues for this account');
 				return Redirect::to('cashier/home');
 			}
-			return View::make('cashier.payment')->with('bill',$bill);
+			$account = $this->account->findByOebr(Input::get('oebr'));
+			$consumed = $account->current_reading - $account->previous_reading;
+			$rates = $this->rate->getRates();
+			$sum = 0;
+			$sum += $rates->generation_system_charge * $consumed;	
+			$sum += $rates->transmission_system_charge * $consumed;
+			$sum += $rates->system_loss_charge * $consumed;
+			$sum += $rates->dist_system_charge * $consumed;
+			$sum += $rates->retail_end_user_charge;
+			$sum += $rates->retail_customer_charge;
+			$sum += $rates->lifeline_subsidy * $consumed;
+			$sum += $rates->prev_yrs_adj_pwr_cost * $consumed;
+			$sum += $rates->contribution_for_capex * $consumed;
+			$sum += $rates->generation_vat * $consumed;
+			$sum += $rates->transmission_vat * $consumed;
+			$sum += $rates->system_loss_vat * $consumed;
+			$sum += $rates->distribution_vat;
+			$sum += $rates->others * $consumed;
+			$sum += $rates->missionary_electrificxn * $consumed;
+			$sum += $rates->environmental_charge * $consumed;
+			$sum += $rates->npc_stranded_cont_cost * $consumed;
+			if($bill->payment_status == 2){
+				$penalty = $sum * 0.12;
+				$sum += $penalty;
+			}else if($bill->status == 3){
+				$penalty = $sum * 0.12;
+				$sum += $penalty;
+				$sum += 112;
+			}
+			return View::make('cashier.payment')->with('bill',$bill)->with('payment',$sum);
 		}
 		
 	}

@@ -68,4 +68,8 @@ class EloquentAccountRepository implements AccountRepository{
 	public function findAccountsByUser($user){
 		return Account::where('user_id','=',$user->id);
 	}
+
+	public function findByOebr($oebr){
+		return Account::where('oebr_number', '=', $oebr)->first();
+	}
 }
