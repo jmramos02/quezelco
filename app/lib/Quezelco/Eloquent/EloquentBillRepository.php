@@ -69,6 +69,25 @@ class EloquentBillRepository implements BillRepository{
 
 	}
 
+	public function update($bill, $account, $inputs)
+	{
+		$arrayStart = explode("-",$inputs['start_date']);
+		$arrayEnd =  explode("-", $inputs['end_date']);
+
+		$bill->account_id = $account->id;
+		$bill->due_date = Carbon::now()->addDays(9);
+		$bill->payment_status = 0;
+		$bill->start_date = date("Y-m-d", strtotime($inputs['start_date']));
+		$bill->end_date = date("Y-m-d", strtotime($inputs['end_date']));
+		
+		//update new account
+		$account->current_reading = $inputs['current_reading'];
+		$account->save();
+		//compute for total payment
+		$rates = WheelingRates::find(1);
+		$bill->save();
+	}
+
 	public function all(){
 		return Bill::all();
 	}
