@@ -110,6 +110,7 @@ Route::get('/admin/wheeling-rates','AdminController@showWheelingRates');
 Route::get('/admin/add-user','UserMaintenanceController@showAddUser');
 Route::get('/admin/home','AdminController@searchLogs');
 
+
 //crud ng users
 Route::put('/admin/update-user/{id}','UserMaintenanceController@modifyUser');
 Route::get('/admin/activation-user/{id}','UserMaintenanceController@activation');
@@ -161,3 +162,5 @@ Route::get('consumer/logout','AuthController@logout');
 
 /*Ajax routes*/
 Route::get('admin/ajax/payments-annual/{year}','AjaxController@paymentsAnnual');
+Route::get('admin/ajax/customer-status','AjaxController@customerStatus');
+Route::get('admin/ajax/bill-status','AjaxController@billingStatus');
