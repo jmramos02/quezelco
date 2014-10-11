@@ -166,6 +166,7 @@ Route::get('cad/home', 'CadController@showHome');
 Route::get('cad/monitoring', 'CadController@showMonitoring');
 Route::get('cad/report', 'CadController@showReports');
 Route::get('cad/my-account', 'CadController@showMyAccount');
+Route::get('/cad/billing/search','CadController@search');
 
 /*Ajax routes*/
 Route::get('admin/ajax/payments-annual/{year}','AjaxController@paymentsAnnual');

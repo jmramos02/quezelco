@@ -13,8 +13,17 @@ class CadController extends BaseController {
 	}
 	public function showHome()
 	{
-		$bills = $this->bill->paginate();
-		return View::make('cad.billing')->with('bills',$bills);
+		$search_key = '';
+		$bills = $this->bill->search($search_key);
+		return View::make('cad.billing', compact('bills', 'search_key'));
+	}
+
+	public function search()
+	{
+		$search_key = Input::get('searchKey');
+        $bills = $this->bill->search($search_key);
+
+        return View::make('cad.billing', compact('bills', 'search_key'));
 	}
 
 	public function showReports() {

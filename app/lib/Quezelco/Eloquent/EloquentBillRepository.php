@@ -93,7 +93,7 @@ class EloquentBillRepository implements BillRepository{
 	}
 
 	public function paginate(){
-		return Bill::select('bills.id as id', 'account_number', 'oebr_number', 'first_name', 'last_name', 'due_date')
+		return Bill::select('bills.id as id', 'account_number', 'oebr_number', 'first_name', 'last_name', 'due_date', 'payment_status')
 				   ->paginate($this->recordsPerPage);
 	}
 

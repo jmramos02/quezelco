@@ -12,7 +12,7 @@
 
 		<div class="row">
 				<div class="col-md-7 options-left">
-					{{Form::open(array('url' => 'admin/billing/search'))}}
+					{{Form::open(array('url' => 'cad/billing/search', 'method' => 'get'))}}
 						<div class="form-group">
 							<div class="col-md-8">
 								{{Form::label('searchKey','Search:', array('placeholder' => 'Search by OEBR'))}}
@@ -44,9 +44,9 @@
 					    @foreach($bills as $bill)
 							<tr>
 								<td>{{$bill->id}}</td>
-								<td>{{$bill->account()->first()->oebr_number}}</td>
-								<td>{{$bill->account()->first()->account_number}}</td>
-								<td>{{$bill->account()->first()->consumer()->first()->last_name}} , {{$bill->account()->first()->consumer()->first()->first_name}}</td>
+								<td>{{$bill->oebr_number}}</td>
+								<td>{{$bill->account_number}}</td>
+								<td>{{$bill->last_name}} , {{$bill->first_name}}</td>
 								<td>{{$bill->due_date}}</td>
 								@if($bill->payment_status == 0)
 									<td>Not Yet Paid</td>
@@ -63,6 +63,7 @@
 					    @endforeach
 					  </tbody>
 					</table>
+					{{ $bills->appends(array('search_key' => $search_key))->links() }}
 				</div>
 				
 			</div>
