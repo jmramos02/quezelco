@@ -9,15 +9,19 @@
 		</div>
 			<div class="col-md-12">
 				<div class="row">
-					{{Form::open(array('url' => 'cad/my-account'))}}
-							{{Form::label('current-password','Current Password')}}
-							{{Form::text('current-password',Input::old('current-password'))}}
-							
-							{{Form::label('new-password','New Password')}}
-							{{Form::text('new-password',Input::old('new-password'))}}
+					{{Form::open(['action' => 'CadController@updatePassword'])}}
 
-							{{Form::label('repeat-new-password','Repeat New Password')}}
-							{{Form::text('repeat-new-password',Input::old('repeat-new-password'))}}
+							<div class="error">{{$errors->first('current_password')}}</div>
+							{{Form::label('current_password','Current Password')}}
+							{{Form::text('current_password',Input::old('current_password'))}}
+							
+							<div class="error">{{$errors->first('new_password')}}</div>
+							{{Form::label('new_password','New Password')}}
+							{{Form::text('new_password',Input::old('new_password'))}}
+
+							<div class="error">{{$errors->first('repeat_new_password')}}</div>
+							{{Form::label('repeat_new_password','Repeat New Password')}}
+							{{Form::text('repeat_new_password',Input::old('repeat_new_password'))}}
 							
 								{{Form::submit('Reset Password',array('class' => 'tiny button reset-password'))}}
 							
