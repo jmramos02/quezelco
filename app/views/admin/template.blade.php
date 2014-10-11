@@ -100,6 +100,7 @@
 	{{HTML::script('libs/foundation/js/foundation.min.js')}}
   	{{HTML::script("bower_components/bootstrap-sass/dist/js/bootstrap.min.js")}}
   	{{HTML::script('http://code.jquery.com/ui/1.11.1/jquery-ui.js')}}
+  	{{HTML::script('scripts/chart.js')}}
   	<script>
     	$(document).foundation();
 

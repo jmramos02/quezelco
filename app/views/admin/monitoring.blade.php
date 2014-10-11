@@ -8,12 +8,17 @@
 			<div class="col-md-12 column">
 				<h2>Monitoring</h2>
 			</div>
-		</div>
-			<div class="col-md-12">
-				<h6>Billing Statistics</h6>
-				<p class = "notification">Showing this year's billing statistics</p>
-				<canvas id="myChart" width="200" height="200"></canvas>
+			<div class="col-md-6">
+				<h6>Current Customer Statistics</h6>
+				<p class = "notification">As of Today</p>
+				<canvas id="myChart" width="300" height="300"></canvas>
+			</div>
+
+			<div class="col-md-6">
+				<h6>Billing Status</h6>
+				<p class="notification">As of Today</p>
+				<canvas id="bill-status" height="300" height="300"></canvas>
 			</div>
 		</div>
-		{{HTML::script('scripts/chart.js')}}
+	</div>
 @stop

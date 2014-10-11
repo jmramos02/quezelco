@@ -1,37 +1,55 @@
 $(document).ready(function(){
-	var ctx = $("#myChart").get(0).getContext("2d");
-	Chart.defaults.global.responsive = true;
+	var ctx = document.getElementById("myChart").getContext("2d");
 
 	//get shit data from ajax
-
-	var data = [];
 	$.ajax({
 		type : "GET",
-		url : "ajax/payments-annual/2014",
+		url : "ajax/customer-status",
 		dataType : 'json'
 	}).done(function(response){
-		data = response;
+		var data = [
+			    {
+			        value: response[0],
+			        color:"#26A65B",
+			        highlight: "yellow",
+			        label: "Connected"
+			    },
+			    {
+			        value: response[1],
+			        color: "red",
+			        highlight: "orange",
+			        label: "Disconnected"
+			    }
+		];	
+		var myDoughnutChart = new Chart(ctx).Doughnut(data);
+	}).error(function(err,status,errorThrown){
+		alert(errorThrown);
+	});
+
+
+	//for bargraphh
+
+	var ctx2 = document.getElementById("bill-status").getContext("2d");
+	$.ajax({
+		type : "GET",
+		url : "ajax/bill-status",
+		dataType : 'json'
+	}).done(function(response){
 		var data = {
-	    labels: ["January", "February", "March", "April", "May", "June", "July",'August','September','October','November','December'],
+		    labels: ["Paid", "Not Yet Paid", "Penalty", "For Disconnection"],
 		    datasets: [
 		        {
-		            label: "My First dataset",
-		            fillColor: "rgba(220,220,220,0.2)",
-		            strokeColor: "rgba(220,220,220,1)",
-		            pointColor: "rgba(220,220,220,1)",
-		            pointStrokeColor: "#fff",
-		            pointHighlightFill: "#fff",
-		            pointHighlightStroke: "rgba(220,220,220,1)",
-		            data: data
+		            label: "Bill Status",
+		            fillColor: "rgba(220,220,220,0.5)",
+		            strokeColor: "rgba(220,220,220,0.8)",
+		            highlightFill: "rgba(220,220,220,0.75)",
+		            highlightStroke: "rgba(220,220,220,1)",
+		            data: response
 		        },
 		    ]
 		};
+		var myBarChart = new Chart(ctx2).Bar(data);
 
-
-		var myLineChart = new Chart(ctx).Line(data,{
-			scaleGridLineColor : "rgba(0,0,0,.05)",
-			scaleGridLineWidth : 1,
-		});
 	}).error(function(err,status,errorThrown){
 		alert(errorThrown);
 	});
