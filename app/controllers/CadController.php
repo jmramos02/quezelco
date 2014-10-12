@@ -43,7 +43,7 @@ class CadController extends BaseController {
 
 	public function updatePassword()
 	{
-		/*$rules = array('current_password' =>'required',
+		$rules = array('current_password' =>'required',
 				'new_password' => 'required',
 				'repeat_new_password' => "same:new_password");
 
@@ -61,9 +61,8 @@ class CadController extends BaseController {
 		    return Redirect::back();
 		}
 
-		$user->password 	= Hash::make(Input::get('new_password'));
+		$user->password = Input::get('new_password');
 		$user->save();
-		print_r($user->password . '<br/><br/>');die();*/
 
 		return Redirect::to('cad/home');
 	}
