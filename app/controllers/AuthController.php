@@ -63,7 +63,9 @@ class AuthController extends BaseController{
 			return 'admin/home';
 		}else if($user->inGroup($this->auth->findGroupByName('Collector'))){
 			return 'collector/home';
-		}else{
+		}else if ($user->inGroup($this->auth->findGroupByName('Consumers Area Department'))){
+			return 'cad/home';
+		} else {
 			return 'consumer/home';
 		}
 	}

@@ -5,7 +5,7 @@ use Quezelco\Interfaces\AccountRepository as AccountRepo;
 use Quezelco\Interfaces\RatesRepository as Rates;
 use Carbon\Carbon;
 
-class BillingController extends \BaseController {
+class BillingController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
