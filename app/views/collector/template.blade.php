@@ -43,7 +43,7 @@
 
 		    <!-- Right Nav Section -->
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="#">My Account</a></li>
+		      <li><a href="{{URL::to('collector/my-account')}}">My Account</a></li>
 		      <li><a href="{{URL::to('collector/logout')}}">Logout</a></li>
 		    </ul>
 		  </div>

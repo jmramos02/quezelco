@@ -45,7 +45,7 @@
 
 		    <!-- Right Nav Section -->
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="#">My Account</a></li>
+		      <li><a href="{{URL::to('cashier/my-account')}}">My Account</a></li>
 		      <li><a href="{{URL::to('cashier/logout')}}">Logout</a></li>
 		    </ul>
 		  </div>

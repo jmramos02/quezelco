@@ -44,7 +44,7 @@
 
 		    <!-- Right Nav Section -->
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="#">My Account</a></li>
+		      <li><a href="{{URL::to('consumer/my-account')}}">My Account</a></li>
 		      <li><a href="{{URL::to('consumer/logout')}}">Logout</a></li>
 		    </ul>
 		  </div>

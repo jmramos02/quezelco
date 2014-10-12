@@ -94,7 +94,7 @@
 
 		    <!-- Right Nav Section -->
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+		      <li><a href="{{URL::to('admin/my-account')}}"><i class="fa fa-user"></i> My Account</a></li>
 		      <li><a href="{{URL::to('admin/logout')}}"><i class="fa fa-power-off"></i>Logout</a></li>
 		    </ul>
 		  </div>

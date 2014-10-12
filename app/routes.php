@@ -109,7 +109,8 @@ Route::get('/admin/disconnected-bills','AdminController@showDisconnectedBills');
 Route::get('/admin/wheeling-rates','AdminController@showWheelingRates');
 Route::get('/admin/add-user','UserMaintenanceController@showAddUser');
 Route::get('/admin/home','AdminController@searchLogs');
-Route::get('/admin/my-account','MyAccountController@index');
+Route::get('/admin/my-account','UserMaintenanceController@showMyAccount');
+Route::post('/admin/my-account','UserMaintenanceController@updatePassword');
 
 //crud ng users
 Route::put('/admin/update-user/{id}','UserMaintenanceController@modifyUser');
@@ -150,15 +151,22 @@ Route::get('cashier/home','CashierController@showHome');
 Route::get('cashier/logout', 'AuthController@logout');
 Route::get('cashier/payment/search-oebr','CashierController@showOEBR');
 Route::post('cashier/accept-payment/{id}','CashierController@acceptPayment');
+Route::get('cashier/my-account', 'CadController@showMyAccount');
+Route::post('cashier/my-account', 'CadController@updatePassword');
+
 
 /*COLLECTOR*/
 Route::get('collector/home','CollectorController@showHome');
+Route::get('collector/my-account', 'CollectorController@showMyAccount');
+Route::post('collector/my-account', 'CollectorController@updatePassword');
 Route::get('collector/logout', 'AuthController@logout');
 
 /*Cashiering*/
 Route::get('consumer/home','ConsumerController@showHome');
 Route::get('consumer/enroll/{id}','ConsumerController@showEnroll');
 Route::post('consumer/enroll/{id}','ConsumerController@enroll');
+Route::get('consumer/my-account', 'ConsumerController@showMyAccount');
+Route::post('consumer/my-account', 'ConsumerController@updatePassword');
 Route::get('consumer/logout','AuthController@logout');
 
 /*CAD*/

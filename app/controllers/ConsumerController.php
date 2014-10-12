@@ -34,4 +34,34 @@ class ConsumerController extends BaseController{
 		Session::flash('message','You will received a message shortly regarding on the confirmation of your sms enrollment');
 		return Redirect::to('consumer/home');
 	}
+
+	public function showMyAccount(){
+		return View::make('consumer.my-account');
+	}
+
+	public function updatePassword()
+	{
+		$rules = array('current_password' =>'required',
+				'new_password' => 'required',
+				'repeat_new_password' => "same:new_password");
+
+		$validator = Validator::make(Input::all(), $rules);
+		if( $validator->fails()) {
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$user = $this->auth->getCurrentUser();
+
+		print_r($user->password . '<br/><br/>');
+
+		if (!Hash::check(Input::get('current_password'), $user->password))
+		{
+		    return Redirect::back();
+		}
+
+		$user->password = Input::get('new_password');
+		$user->save();
+
+		return Redirect::to('consumer/home');
+	}
 }

@@ -6,7 +6,7 @@ use Quezelco\Interfaces\AuthRepository as Auth;
 use Quezelco\Interfaces\LocationRepository as Location;
 use Quezelco\Interfaces\UserLocationRepository as UserLocationRepository;
 
-class UserMaintenanceController extends BaseController{
+class UserMaintenanceController extends BaseController {
 
 	private $consumerRole = "NONE";
 
@@ -134,4 +134,33 @@ class UserMaintenanceController extends BaseController{
 		return Redirect::to('admin/user-maintenance');
 	}
 
+	public function showMyAccount(){
+		return View::make('admin.my-account');
+	}
+
+	public function updatePassword()
+	{
+		$rules = array('current_password' =>'required',
+				'new_password' => 'required',
+				'repeat_new_password' => "same:new_password");
+
+		$validator = Validator::make(Input::all(), $rules);
+		if( $validator->fails()) {
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$user = $this->auth->getCurrentUser();
+
+		print_r($user->password . '<br/><br/>');
+
+		if (!Hash::check(Input::get('current_password'), $user->password))
+		{
+		    return Redirect::back();
+		}
+
+		$user->password = Input::get('new_password');
+		$user->save();
+
+		return Redirect::to('admin/home');
+	}
 }

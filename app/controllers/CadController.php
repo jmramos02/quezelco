@@ -54,8 +54,6 @@ class CadController extends BaseController {
 
 		$user = $this->auth->getCurrentUser();
 
-		print_r($user->password . '<br/><br/>');
-
 		if (!Hash::check(Input::get('current_password'), $user->password))
 		{
 		    return Redirect::back();
