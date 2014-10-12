@@ -105,4 +105,15 @@ class EloquentUserRepository implements UserRepository{
 				->select('users.id as id','users.first_name as first_name','users.last_name as last_name')
 				->paginate(10);
 	}
+
+	public function getDisconnectedManagerView($id, $location_id){
+		return User::join('users_groups','users.id','=' , 'users_groups.user_id')
+				->join('user_location','users.id','=','user_location.user_id')
+				->join('accounts','users.id','=','accounts.user_id')
+				->where('accounts.status','=','0')
+				->where('users_groups.group_id','=',$id)
+				->whereIn('user_location.location_id', $location_id)
+				->select('users.id as id','users.first_name as first_name','users.last_name as last_name')
+				->get();
+	}
 }

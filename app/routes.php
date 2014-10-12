@@ -190,3 +190,4 @@ Route::get('manager/change-status/{id}','ManagerController@changeStatus');
 Route::get('manager/search/','ManagerController@search');
 Route::get('manager/reports/customer-list','ManagerController@generateAccountList');
 Route::get('manager/print-billing-statement/{id}','ManagerController@printBillingStatement');
+Route::get('manager/reports/disconnected-list','ManagerController@generateDisconnectedList');

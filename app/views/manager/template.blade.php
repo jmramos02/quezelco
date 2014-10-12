@@ -48,25 +48,14 @@
 		      </li>
 		      
 		      <!--<li><a href="{{URL::to('manager/cashier')}}">Cashier</a></li>-->
-
-		      <li class="dropdown">
-		      	
-		      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		      		<i class="fa fa-users"> </i> Users/Customers <span class="caret"></span></a>
-
-		      	<ul class="dropdown-menu" role="menu">
-		      		<li><a href="{{URL::to('manager/user-maintenance')}}">User Maintenance</a></li>
-		      	</ul>
-		      	
-		      </li>
 		      
 		      <li class = "dropdown">
 		      	<a href="" class="dropdown-toggle" data-toggle="dropdown">
 		      		<i class="fa fa-file-pdf-o"> </i> Reports <span class="caret"></span></a>
 		      	<ul class="dropdown-menu" role="menu">
 		      		<li>{{HTML::link('manager/reports/customer-list','Customer List')}}</li>
-		      		<li>{{HTML::link('manager/reports/route-list',"List Of Disconnected Customers")}}</li>
-		      		<li>{{HTML::link('manager/reports/consumer-list', 'Sms List')}}</li>
+		      		<li>{{HTML::link('manager/reports/disconnected-list',"List Of Disconnected Customers")}}</li>
+		      		<li>{{HTML::link('manager/reports/sms-list', 'Sms List')}}</li>
 		      	</ul>
 		      	</li>
 		    </ul>
