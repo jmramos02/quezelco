@@ -20,8 +20,9 @@ class BillingController extends BaseController {
 	}
 	public function index()
 	{
-		$bills = $this->bill->paginate();
-		return View::make('admin.billing.index')->with('bills',$bills);
+        $search_key = '';
+		$bills = $this->bill->search($search_key);
+		return View::make('admin.billing.index', compact('bills', 'search_key'));
 	}
 
 
@@ -94,6 +95,14 @@ class BillingController extends BaseController {
 		//
 	}
 
+    public function search()
+    {
+        $search_key = Input::get('searchKey');
+        $bills = $this->bill->search($search_key);
+
+        return View::make('admin.billing.index', compact('bills', 'search_key'));
+    }
+
 	public function enterReading($id){
 		$current_date = Input::get('start_date');
 		$rules = array('new_reading' =>'required|numeric',
@@ -109,6 +118,36 @@ class BillingController extends BaseController {
 			return Redirect::to('admin/billing')->with('message','Bill added to customer');
 		}
 	}
+
+    public function adjustReading($id)
+    {
+        $bill = Bill::join('accounts', 'bills.account_id', '=', 'accounts.id')
+                     ->where('bills.id', '=', $id)
+                     ->select('bills.id as id', 'start_date', 'end_date', 'current_reading')
+                     ->first();
+
+        return View::make('admin.billing.edit-reading')->with('bill', $bill);
+    }
+
+    public function updateReading($id)
+    {
+        $current_date = Input::get('start_date');
+        $bill = Bill::find($id);
+        $account = Account::find($bill->account_id);
+
+        $rules = array('current_reading' =>'required|numeric',
+                'start_date' => 'required|date',
+                'end_date' => "required|date|after:$current_date");
+
+        $validator = Validator::make(Input::all(), $rules);
+        if($validator->fails())
+        {
+            return Redirect::to('/admin/adjust-billing/' . $id)->withErrors($validator);
+        }
+
+        $this->bill->update($bill, $account, Input::all());
+        return Redirect::to('admin/billing')->with('message','Bill updated to customer');
+    }
 
 	public function showEnterReadingForm($id){
 		return View::make('admin.billing.reading-form')->with('id', $id);

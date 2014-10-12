@@ -10,14 +10,20 @@
 			</div>
 			<div class="col-md-6">
 				<h6>Current Customer Statistics</h6>
-				<p class = "notification">As of Today</p>
+				<p class = "notification">Connection Status</p>
 				<canvas id="myChart" width="300" height="300"></canvas>
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<h6>Billing Status</h6>
-				<p class="notification">As of Today</p>
-				<canvas id="bill-status" height="300" height="300"></canvas>
+				<canvas id="bill-status" width="300" height="300"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h6>Payment History</h6>
+				<p class="notification">Current Year</p>
+				<canvas id="payment-history" width = "300" height = "300"></canvas>
 			</div>
 		</div>
 	</div>

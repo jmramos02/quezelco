@@ -35,4 +35,15 @@ class AjaxController extends BaseController{
 		$return[3] = $disconnection;
 		return Response::json($return);
 	}
+
+	public function logsStatus(){
+
+	}
+
+	public function paymentHistory(){
+		$disconnection = Bill::where('payment_status' , '=' , 3)->count();
+		$penalties = Bill::where('payment_status' ,'=' , 2)->count();
+		$paid = Bill::where('payment_status' , '=' , 0)->count();
+		$notYetPaid = Bill::where('payment_status', '=' , 1)->count();
+	}
 }

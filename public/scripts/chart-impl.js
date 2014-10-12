@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var ctx = document.getElementById("myChart").getContext("2d");
-
+	
 	//get shit data from ajax
 	$.ajax({
 		type : "GET",
@@ -40,8 +40,8 @@ $(document).ready(function(){
 		    datasets: [
 		        {
 		            label: "Bill Status",
-		            fillColor: "rgba(220,220,220,0.5)",
-		            strokeColor: "rgba(220,220,220,0.8)",
+		            fillColor: "#26A65B",
+		            strokeColor: "#26A65B",
 		            highlightFill: "rgba(220,220,220,0.75)",
 		            highlightStroke: "rgba(220,220,220,1)",
 		            data: response
@@ -49,6 +49,37 @@ $(document).ready(function(){
 		    ]
 		};
 		var myBarChart = new Chart(ctx2).Bar(data);
+
+	}).error(function(err,status,errorThrown){
+		alert(errorThrown);
+	});
+
+	var ctx3 = document.getElementById("payment-history").getContext("2d");
+
+	$.ajax({
+		type : "GET",
+		url : "ajax/payments-annual/2014",
+		dataType : 'json'
+	}).done(function(response){
+		
+		var data = {
+		    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+		    datasets: [
+				        {
+				            label: "Payment History",
+				            fillColor: "rgba(220,220,220,0.2)",
+				            strokeColor: "#26A65B",
+				            pointColor: "rgba(220,220,220,1)",
+				            pointStrokeColor: "#fff",
+				            pointHighlightFill: "#fff",
+				            pointHighlightStroke: "rgba(220,220,220,1)",
+				            data: response
+				        },
+				    ]
+				};
+		var myLineChart = new Chart(ctx3).Line(data,{
+			responsive: true
+		});
 
 	}).error(function(err,status,errorThrown){
 		alert(errorThrown);

@@ -12,7 +12,7 @@
 
 		<div class="row">
 				<div class="col-md-7 options-left">
-					{{Form::open(array('url' => 'admin/billing/search'))}}
+					{{Form::open(array('url' => 'admin/billing/search', 'method' => 'get'))}}
 						<div class="form-group">
 							<div class="col-md-8">
 								{{Form::label('searchKey','Search:', array('placeholder' => 'Search by OEBR'))}}
@@ -44,9 +44,9 @@
 					    @foreach($bills as $bill)
 							<tr>
 								<td>{{$bill->id}}</td>
-								<td>{{$bill->account()->first()->oebr_number}}</td>
-								<td>{{$bill->account()->first()->account_number}}</td>
-								<td>{{$bill->account()->first()->consumer()->first()->last_name}} , {{$bill->account()->first()->consumer()->first()->first_name}}</td>
+								<td>{{$bill->oebr_number}}</td>
+								<td>{{$bill->account_number}}</td>
+								<td>{{$bill->last_name}} , {{$bill->first_name}}</td>
 								<td>{{$bill->due_date}}</td>
 								@if($bill->payment_status == 0)
 									<td>Not Yet Paid</td>
@@ -57,12 +57,13 @@
 								@elseif($bill->payment_status == 3)
 									<td>For Disconnection</td>
 								@endif
-								<td>{{HTML::link('admin/adjust-billing'. $bill->id, 'Adjust Billing' , array('style' => 'color:green'))}}</td>
+								<td>{{HTML::link('admin/adjust-billing/'. $bill->id, 'Adjust Billing' , array('style' => 'color:green'))}}</td>
 								<td>{{HTML::link('admin/print-billing-statement/' . $bill->id, 'Print', array('style' => 'color:green'))}}</td>
 							</tr>
 					    @endforeach
 					  </tbody>
 					</table>
+					{{ $bills->appends(array('search_key' => $search_key))->links() }}
 				</div>
 				
 			</div>

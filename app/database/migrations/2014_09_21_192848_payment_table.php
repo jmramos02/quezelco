@@ -17,6 +17,8 @@ class PaymentTable extends Migration {
 			$table->double('payment',10,4);
 			$table->integer('bill_id')->unsigned();
 			$table->integer('cashier_id')->unsigned();
+			//status - for audit_trail purposes
+			$table->integer('status');
 			$table->double('change', 10, 4);
 			$table->timestamps();
 			$table->foreign('cashier_id')->references('id')->on('users');

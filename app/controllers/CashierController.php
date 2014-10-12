@@ -4,6 +4,7 @@ use Quezelco\Interfaces\BillRepository as Bill;
 use Quezelco\Interfaces\AuthRepository as Auth;
 use Quezelco\Interfaces\RatesRepository as Rate;
 use Quezelco\Interfaces\AccountRepository as Account;
+use Symfony\Component\Intl\NumberFormatter\NumberFormatter;
 
 class CashierController extends BaseController{
 	public function __construct(Bill $bill, Auth $auth, Rate $rate, Account $account){
@@ -57,25 +58,38 @@ class CashierController extends BaseController{
 				$sum += $penalty;
 				$sum += 112;
 			}
-			return View::make('cashier.payment')->with('bill',$bill)->with('payment',$sum);
+			return View::make('cashier.payment')->with('bill',$bill)->with('payment',$sum)->with('oebr',$oebr);
 		}
 		
 	}
 
 	public function acceptPayment($id){
+		$formattedValue = intval(str_replace(',', '', Input::get('due_payment')));
+		$rules = array('payment' => 'required');
+		$oebr = Input::get('oebr');
+		$validator = Validator::make(Input::all(),$rules);
 
-		$bill = $this->bill->find($id);
+		if($validator->fails()){
+			return Redirect::to('cashier/payment/search-oebr?oebr=' . $oebr)->withErrors($validator);
+		}else{
+			if($formattedValue > Input::get('payment')){
+				Session::flash('error_message','Invalid Amount');
+				return Redirect::to('cashier/payment/search-oebr?oebr=' . $oebr)->withErrors($validator);
+			}
+			$bill = $this->bill->find($id);
+			$bill->payment_status = 1;
+			$bill->save();
+			$payment = new Payment();
+			$payment->payment = Input::get('payment');
+			$payment->change = Input::get('payment') - $formattedValue;
+			$payment->bill_id = $id;
+			$payment->cashier_id = $this->auth->getCurrentUser()->id;
+			$payment->status = $bill->payment_status;
 
-		$bill->payment_status = 1;
-		$bill->save();
-		$payment = new Payment();
-		$payment->payment = Input::get('payment');
-		$payment->change = Input::get('payment') - $bill->due_payment;
-		$payment->bill_id = $id;
-		$payment->cashier_id = $this->auth->getCurrentUser()->id;
-
-		$payment->save();
-		Session::flash('message','Payment Accepted! Change is: ' . $payment->change);
-		return Redirect::to('cashier/home');
+			$payment->save();
+			Session::flash('message','Payment Accepted! Change is: ' . $payment->change);
+			return Redirect::to('cashier/home');
+		}
+		
 	}
 }

@@ -129,6 +129,9 @@ Route::get('/admin/add-account/{userId}','CustomerController@showCreateForm');
 Route::get('/admin/change-status/{id}','CustomerController@changeStatus');
 Route::get('/admin/enter-reading/{id}','BillingController@showEnterReadingForm');
 Route::post('/admin/billing/{id}','BillingController@enterReading');
+Route::get('/admin/billing/search','BillingController@search');
+Route::get('/admin/adjust-billing/{id}','BillingController@adjustReading');
+Route::get('/admin/update-billing/{id}','BillingController@updateReading');
 Route::get('/admin/print-billing-statement/{id}','BillingController@showPdf');
 Route::get('/admin/reports/user-list','ReportController@generateUserList');
 Route::get('/admin/reports/location-list','ReportController@generateLocationList');
@@ -145,7 +148,7 @@ Route::resource('admin/billing','BillingController');
 /*CASHIERING*/
 Route::get('cashier/home','CashierController@showHome');
 Route::get('cashier/logout', 'AuthController@logout');
-Route::post('cashier/payment/search-oebr','CashierController@showOEBR');
+Route::get('cashier/payment/search-oebr','CashierController@showOEBR');
 Route::post('cashier/accept-payment/{id}','CashierController@acceptPayment');
 
 /*COLLECTOR*/
