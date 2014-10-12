@@ -4,6 +4,7 @@ namespace Quezelco\Eloquent;
 use User;
 use Validator;
 use Group;
+use AccountContact;
 use UserLocation;
 use Quezelco\Interfaces\UserRepository;
 use Quezelco\Interfaces\AuthRepository as Auth;
@@ -114,6 +115,20 @@ class EloquentUserRepository implements UserRepository{
 				->where('users_groups.group_id','=',$id)
 				->whereIn('user_location.location_id', $location_id)
 				->select('users.id as id','users.first_name as first_name','users.last_name as last_name')
+				->get();
+	}
+
+	public function getSmsManagerView($id, $location_id){
+		return AccountContact::join('accounts','accounts_contact.account_id','=','accounts.id')
+				->join('users','users.id','=','accounts.user_id')
+				->join('users_groups','users.id','=' , 'users_groups.user_id')
+				->join('user_location','users.id','=','user_location.user_id')
+				->where('users_groups.group_id','=',$id)
+				->whereIn('user_location.location_id', $location_id)
+				->select('users.id as id',
+					'users.first_name as first_name',
+					'users.last_name as last_name',
+					'accounts_contact.contact_number as contact_number')
 				->get();
 	}
 }

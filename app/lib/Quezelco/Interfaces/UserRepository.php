@@ -13,4 +13,5 @@ interface UserRepository {
 	public function getManagerViewPaginated($id, $location_id);
 	public function searchManagerView($id, $location_id, $search_key);
 	public function getDisconnectedManagerView($id, $location_id);
+	public function getSmsManagerView($id, $location_id);
 }

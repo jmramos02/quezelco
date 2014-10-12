@@ -152,6 +152,48 @@ class ManagerController extends BaseController{
                 Fpdf::Output();
                 exit;
 	}
+	public function generateSmsList(){
+			Fpdf::AddPage();
+				Fpdf::SetFont('Courier','B',16);
+                Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+                Fpdf::SetFont('Courier','',11);
+                Fpdf::Cell(190,10,'Disconnected List as of ' . Carbon::now(),0,1,'C');
+                Fpdf::SetFont('Courier','','9');
+
+        		Fpdf::SetFillColor(0);
+                Fpdf::SetTextColor(255);
+                Fpdf::SetFont('Courier','B');
+                Fpdf::Cell(65, 10, "First Name" , 1, 0, 'L', true);
+                Fpdf::Cell(65, 10, "Last Name" , 1, 0, 'L', true);
+                Fpdf::Cell(65, 10, "Contact Number" , 1, 0, 'L', true);
+                Fpdf::Ln();
+
+                //get user to get the id of the damn user
+				$user = $this->auth->getCurrentUser();
+				//get damn location out of the user
+				$locations = $this->user->find($user->id)->locations()->get();
+				//get all consumer accounts
+				$id = $this->auth->findGroupByName('Consumer')->id;
+				//arraying~
+				$location_id = array();
+				foreach($locations as $location){
+					$location_id[] = $location->id;
+				}
+
+                $users = $this->user->getSmsManagerView($id, $location_id);
+                Fpdf::SetFillColor(255);
+                Fpdf::SetTextColor(0);
+
+                foreach($users as $user){
+                	Fpdf::Cell(65, 6, $user->first_name, 1, 0, 'L', true);
+                	Fpdf::Cell(65, 6, $user->last_name, 1, 0, 'L', true);
+                	Fpdf::Cell(65, 6, $user->contact_number, 1, 0, 'L', true);
+                	Fpdf::Ln();
+                }
+
+                Fpdf::Output();
+                exit;
+	}
 
 	public function printBillingStatement($id){
 		$bill = $this->bill->findNextPaymentById($id);
