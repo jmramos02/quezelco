@@ -42,16 +42,9 @@
 
 		      <li><a href="{{URL::to('manager/home')}}"><i class="fa fa-home"></i> Home</a></li>
 
-		      <li class="dropdown">
-		      	
-		      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		      		<i class="fa fa-dollar"></i> Transactions <span class="caret"></span></a>
+		      <li><a href="{{URL::to('manager/monitoring')}}">
+		      		<i class="fa fa-bar-chart-o"></i> Monitoring </a>
 
-		      	<ul class="dropdown-menu" role="menu">
-		      		<li><a href="{{URL::to('manager/billing')}}">Billing</a></li>
-		      		<li><a href="{{URL::to('manager/monitoring')}}">Monitoring</a></li>
-		      	</ul>
-		      	
 		      </li>
 		      
 		      <!--<li><a href="{{URL::to('manager/cashier')}}">Cashier</a></li>-->
@@ -71,10 +64,9 @@
 		      	<a href="" class="dropdown-toggle" data-toggle="dropdown">
 		      		<i class="fa fa-file-pdf-o"> </i> Reports <span class="caret"></span></a>
 		      	<ul class="dropdown-menu" role="menu">
-		      		<li>{{HTML::link('admin/reports/user-list','User List')}}</li>
-		      		<li>{{HTML::link('admin/reports/location-list','Location List')}}</li>
-		      		<li>{{HTML::link('admin/reports/route-list',"List of Brgy's")}}</li>
-		      		<li>{{HTML::link('admin/reports/consumer-list', 'Consumer List')}}</li>
+		      		<li>{{HTML::link('manager/reports/customer-list','Customer List')}}</li>
+		      		<li>{{HTML::link('manager/reports/route-list',"List Of Disconnected Customers")}}</li>
+		      		<li>{{HTML::link('manager/reports/consumer-list', 'Sms List')}}</li>
 		      	</ul>
 		      	</li>
 		    </ul>

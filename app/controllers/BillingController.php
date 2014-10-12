@@ -154,7 +154,7 @@ class BillingController extends BaseController {
 	}
 
 	public function showPdf($id){
-		$bill = $this->bill->find($id);
+        $bill = $this->bill->findNextPaymentById($id)
 		$rates = $this->rates->getRates();
 		$accountObject = $bill->account()->first();
 		$userObject = $bill->account()->first()->consumer()->first();

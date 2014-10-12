@@ -9,7 +9,7 @@
 		<h2>Manager's Module</h2>
 		@if(Session::has('message'))
 			<div class="row billing-title">
-				<div class="col-md-12 column">
+				<p class = "notification">{{Session::get('message')}}</p>
 			</div>
 		@endif
 		<div class="row">
@@ -22,7 +22,7 @@
 							  <div class="form-group">
 							    <div class="input-group">
 							    	<div class="input-group-addon"><i class="fa fa-search"></i></div>
-							    	{{Form::text('search_key','',array('class' => 'form-control','id' => 'search-user-logs', 'placeholder' => 'Search'))}}
+							    	{{Form::text('search_key','',array('class' => 'form-control','id' => 'search-user-logs', 'placeholder' => 'Enter OEBR Number'))}}
 							    </div>
 							  </div>
 							</form>
@@ -45,9 +45,10 @@
 			      <th>Last Name</th>
 			      <th>Brgy</th>
 			      <th>Status</th>
-			      <th>Current Reading</th>
-			      <th>Previous Reading</th>
+			      <th>OEBR</th>
+			      <th>Print Billing Statement</th>
 			      <th>Change Status</th>
+
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -66,8 +67,8 @@
 						<p class = "error">Disconnected</p>
 			      	@endif
 			      </td>
-			      <td>{{number_format($user->consumer()->first()->current_reading,2)}}</td>
-			      <td>{{number_format($user->consumer()->first()->previous_reading,2)}}</td>
+			      <td>{{$user->consumer()->first()->oebr_number}}</td>
+			     <td>{{HTML::link('manager/print-billing-statement/' . $user->consumer()->first()->id, 'Print', array('style' => 'color:green'))}}</td>
 			      <td>{{HTML::link('manager/change-status/' . $user->consumer()->first()->id,'Change Status',array('style' => 'color:green'))}}</td>
 			   	</tr>
 			   @endforeach
