@@ -182,3 +182,9 @@ Route::get('cad/logout','AuthController@logout');
 Route::get('admin/ajax/payments-annual/{year}','AjaxController@paymentsAnnual');
 Route::get('admin/ajax/customer-status','AjaxController@customerStatus');
 Route::get('admin/ajax/bill-status','AjaxController@billingStatus');
+
+/*Manager Routes*/
+Route::get('manager/home','ManagerController@showIndex');
+Route::get('manager/logout','AuthController@logout');
+Route::get('manager/change-status/{id}','ManagerController@changeStatus');
+Route::get('manager/search/','ManagerCOntroller@search');

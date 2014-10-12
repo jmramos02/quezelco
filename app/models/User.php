@@ -32,4 +32,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function route(){
 		return $this->hasOne('QRoute','routes');
 	}
+
+	public function consumer(){
+		return $this->hasMany('Account','user_id');
+	}
 }

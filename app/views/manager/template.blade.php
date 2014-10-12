@@ -40,34 +40,21 @@
 		    <ul class="nav navbar-nav">
 
 
-		      <li><a href="{{URL::to('admin/home')}}"><i class="fa fa-home"></i> Home</a></li>
+		      <li><a href="{{URL::to('manager/home')}}"><i class="fa fa-home"></i> Home</a></li>
 
 		      <li class="dropdown">
 		      	
 		      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		      		<i class="fa fa-dollar"></i> Transactions/Rates <span class="caret"></span></a>
+		      		<i class="fa fa-dollar"></i> Transactions <span class="caret"></span></a>
 
 		      	<ul class="dropdown-menu" role="menu">
-		      		<li><a href="{{URL::to('admin/billing')}}">Billing</a></li>
-		      		<li><a href="{{URL::to('admin/monitoring')}}">Monitoring</a></li>
-		      		<li><a href="{{URL::to('admin/wheeling-rates')}}">Wheeling Rates</a></li>
+		      		<li><a href="{{URL::to('manager/billing')}}">Billing</a></li>
+		      		<li><a href="{{URL::to('manager/monitoring')}}">Monitoring</a></li>
 		      	</ul>
 		      	
 		      </li>
 		      
-		      <li class="dropdown">
-		      	
-		      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		      		<i class="fa fa-compass"></i> Places <span class="caret"></span></a>
-
-		      	<ul class="dropdown-menu" role="menu">
-		      		<li><a href="{{URL::to('admin/location')}}">Locations</a></li>
-		      		<li><a href="{{URL::to('admin/routes')}}">Routes</a></li>
-		      	</ul>
-		      	
-		      </li>
-		      
-		      <!--<li><a href="{{URL::to('admin/cashier')}}">Cashier</a></li>-->
+		      <!--<li><a href="{{URL::to('manager/cashier')}}">Cashier</a></li>-->
 
 		      <li class="dropdown">
 		      	
@@ -75,12 +62,12 @@
 		      		<i class="fa fa-users"> </i> Users/Customers <span class="caret"></span></a>
 
 		      	<ul class="dropdown-menu" role="menu">
-		      		<li><a href="{{URL::to('admin/user-maintenance')}}">User Maintenance</a></li>
-		      		<li><a href="{{URL::to('admin/account')}}">Customer Management</a></li>
+		      		<li><a href="{{URL::to('manager/user-maintenance')}}">User Maintenance</a></li>
 		      	</ul>
 		      	
 		      </li>
-		        <li class = "dropdown">
+		      
+		      <li class = "dropdown">
 		      	<a href="" class="dropdown-toggle" data-toggle="dropdown">
 		      		<i class="fa fa-file-pdf-o"> </i> Reports <span class="caret"></span></a>
 		      	<ul class="dropdown-menu" role="menu">
@@ -94,8 +81,8 @@
 
 		    <!-- Right Nav Section -->
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="{{URL::to('admin/my-account')}}"><i class="fa fa-user"></i> My Account</a></li>
-		      <li><a href="{{URL::to('admin/logout')}}"><i class="fa fa-power-off"></i>Logout</a></li>
+		      <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+		      <li><a href="{{URL::to('manager/logout')}}"><i class="fa fa-power-off"></i>  Logout</a></li>
 		    </ul>
 		  </div>
 	</nav>
@@ -111,7 +98,7 @@
   	{{HTML::script('scripts/chart.js')}}
   	<script>
     	$(document).foundation();
-    	
+
     	$(document).ready(function(){
     		$(".datepicker").datepicker();
     	});	
