@@ -33,6 +33,10 @@ class ManagerController extends BaseController{
 		return View::make('manager.index', compact('users','search_key'));
 	}
 
+    public function showMonitoring(){
+        return View::make('manager.monitoring');
+    }
+
 	public function changeStatus($id){
 		$account = $this->account->find($id);
 		$this->account->changeStatus($account);
@@ -419,4 +423,34 @@ class ManagerController extends BaseController{
         Fpdf::Output();
         exit;
 	}
+
+    public function showMyAccount(){
+        return View::make('manager.my-account');
+    }
+
+    public function updatePassword()
+    {
+        $rules = array('current_password' =>'required',
+                'new_password' => 'required',
+                'repeat_new_password' => "same:new_password");
+
+        $validator = Validator::make(Input::all(), $rules);
+        if( $validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $user = $this->auth->getCurrentUser();
+
+        print_r($user->password . '<br/><br/>');
+
+        if (!Hash::check(Input::get('current_password'), $user->password))
+        {
+            return Redirect::back();
+        }
+
+        $user->password = Input::get('new_password');
+        $user->save();
+
+        return Redirect::to('manager/home');
+    }
 }

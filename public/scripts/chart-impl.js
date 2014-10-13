@@ -26,7 +26,6 @@ $(document).ready(function(){
 		alert(errorThrown);
 	});
 
-
 	//for bargraphh
 
 	var ctx2 = document.getElementById("bill-status").getContext("2d");

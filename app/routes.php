@@ -187,6 +187,11 @@ Route::get('admin/ajax/payments-annual/{year}','AjaxController@paymentsAnnual');
 Route::get('admin/ajax/customer-status','AjaxController@customerStatus');
 Route::get('admin/ajax/bill-status','AjaxController@billingStatus');
 
+Route::get('manager/ajax/payments-annual/{year}','AjaxController@paymentsAnnualManager');
+Route::get('manager/ajax/customer-status','AjaxController@customerStatusManager');
+Route::get('manager/ajax/bill-status','AjaxController@billingStatusManager');
+
+
 /*Manager Routes*/
 Route::get('manager/home','ManagerController@showIndex');
 Route::get('manager/logout','AuthController@logout');
@@ -196,3 +201,9 @@ Route::get('manager/reports/customer-list','ManagerController@generateAccountLis
 Route::get('manager/print-billing-statement/{id}','ManagerController@printBillingStatement');
 Route::get('manager/reports/disconnected-list','ManagerController@generateDisconnectedList');
 Route::get('manager/reports/sms-list','ManagerController@generateSmsList');
+Route::get('manager/my-account', 'ManagerController@showMyAccount');
+Route::post('manager/my-account', 'ManagerController@updatePassword');
+
+Route::get('manager/monitoring','ManagerController@showMonitoring');
+
+Route::get('manager/monitoring/test','ManagerController@showTest');
