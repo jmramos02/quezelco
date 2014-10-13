@@ -5,6 +5,6 @@ class AccountContact extends Eloquent{
 	public $timestamps = false;
 
 	public function consumer(){
-		return $this->belongsTo('Account');
+		return $this->belongsTo('Account','account_id');
 	}
 }
