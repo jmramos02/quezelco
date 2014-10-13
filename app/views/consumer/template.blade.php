@@ -38,14 +38,14 @@
 		  	
 		  	 <!-- Left Nav Section -->
 		    <ul class="nav navbar-nav">
-		      <li><a href="{{URL::to('consumer/home')}}">Home</a></li>
-		      <li><a href="{{URL::to('consumer/billing-history')}}">View Billing History</a></li>
+		      <li><a href="{{URL::to('consumer/home')}}"><i class="fa fa-home"></i> Home</a></li>
+		      <li><a href="{{URL::to('consumer/billing-history')}}"><i class="fa fa-money"></i> View Billing History</a></li>
 		    </ul>
 
 		    <!-- Right Nav Section -->
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="{{URL::to('consumer/my-account')}}">My Account</a></li>
-		      <li><a href="{{URL::to('consumer/logout')}}">Logout</a></li>
+		      <li><a href="{{URL::to('consumer/my-account')}}"><i class="fa fa-user"></i> My Account</a></li>
+		      <li><a href="{{URL::to('consumer/logout')}}"><i class="fa fa-power-off"></i> Logout</a></li>
 		    </ul>
 		  </div>
 	</nav>

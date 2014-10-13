@@ -38,13 +38,13 @@
 		  	
 		  	 <!-- Left Nav Section -->
 		    <ul class="nav navbar-nav">
-		      <li><a href="{{URL::to('collector/home')}}">Home</a></li>
+		      <li><a href="{{URL::to('collector/home')}}"><i class="fa fa-home"></i> Home</a></li>
 		    </ul>
 
 		    <!-- Right Nav Section -->
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="{{URL::to('collector/my-account')}}">My Account</a></li>
-		      <li><a href="{{URL::to('collector/logout')}}">Logout</a></li>
+		      <li><a href="{{URL::to('collector/my-account')}}"><i class="fa fa-user"></i> My Account</a></li>
+		      <li><a href="{{URL::to('collector/logout')}}"><i class="fa fa-power-off"></i> Logout</a></li>
 		    </ul>
 		  </div>
 	</nav>

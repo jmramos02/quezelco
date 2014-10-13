@@ -38,15 +38,15 @@
 		  	
 		  	 <!-- Left Nav Section -->
 		    <ul class="nav navbar-nav">
-		      <li><a href="{{URL::to('cashier/home')}}">Home</a></li>
-		      <li><a href="{{URL::to('cashier/billing')}}">Reprint Adjusted Billing Statement</a></li>
-		      <li><a href="{{URL::to('cashier/monitoring')}}">Reprint Billing Statement</a></li>
+		      <li><a href="{{URL::to('cashier/home')}}"><i class="fa fa-home"></i> Home</a></li>
+		      <li><a href="{{URL::to('cashier/billing')}}"><i class="fa fa-print"></i> Reprint Adjusted Billing Statement</a></li>
+		      <li><a href="{{URL::to('cashier/monitoring')}}"><i class="fa fa-print"></i> Reprint Billing Statement</a></li>
 		    </ul>
 
 		    <!-- Right Nav Section -->
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="{{URL::to('cashier/my-account')}}">My Account</a></li>
-		      <li><a href="{{URL::to('cashier/logout')}}">Logout</a></li>
+		      <li><a href="{{URL::to('cashier/my-account')}}"><i class="fa fa-user"></i> My Account</a></li>
+		      <li><a href="{{URL::to('cashier/logout')}}"><i class="fa fa-power-off"></i> Logout</a></li>
 		    </ul>
 		  </div>
 	</nav>
