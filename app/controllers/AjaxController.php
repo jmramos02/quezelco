@@ -28,7 +28,6 @@ class AjaxController extends BaseController{
 		$penalties = Bill::where('payment_status' ,'=' , 2)->count();
 		$paid = Bill::where('payment_status' , '=' , 0)->count();
 		$notYetPaid = Bill::where('payment_status', '=' , 1)->count();
-
 		$return[0] = $paid;
 		$return[1] = $notYetPaid;
 		$return[2] = $penalties;
