@@ -9,7 +9,7 @@
 	<div class="container">
 		<h2>Collector</h2>
 		<div class="col-md-12">
-			{{Form::open(array('url' =>'cashier/payment/search-oebr'))}}
+			{{Form::open(array('url' =>'collector/payment/search-oebr', 'method' => 'get'))}}
 			<div class="error">{{$errors->first('oebr')}}</div>
 			<div class="col-md-12">
 				<h6>OEBR</h6>
@@ -20,5 +20,12 @@
 			</div>
 			{{Form::close()}}
 		</div>
+		@if(Session::has('message'))
+			<div class="row billing-title">
+				<div class="col-md-12 column">
+					<p class="notification">{{Session::get('message')}}</p>
+				</div>
+			</div>
+		@endif
 	</div>
 @stop

@@ -1,4 +1,4 @@
-@extends('cashier.template')
+@extends('collector.template')
 @section('head')
 	{{HTML::style("stylesheets/collector.css")}}
 @stop
@@ -8,9 +8,13 @@
 	
 	<div class="container">
 		
-		<h2>Cashier</h2>
+		<h2>Collector</h2>
 		<div class="col-md-12">
-		{{Form::open(array('url' =>'collector/accept-payment/' . $bill->id))}}
+		<div class="error">{{$errors->first('payment')}}</div>
+		@if(Session::has('error_message'))
+			<div class="error">{{Session::get('error_message')}}</div>
+		@endif
+		{{Form::open(array('url' =>'collector/accept-payment/' . $bill->id .'?oebr=' . $oebr))}}
 			<div class="col-md-4">
 				<h6>Oebr Number</h6>
 				{{Form::text('last_name', $bill->account()->first()->oebr_number,array('class' => 'form-control', 'id' => 'change', 'readonly' => 'true'))}}
@@ -29,7 +33,7 @@
 			</div>
 			<div class="col-md-4">
 				<h6>Total Due</h6>
-				{{Form::text('due_payment', number_format($bill->total_payment,2),array('class' => 'form-control', 'id' => 'change', 'readonly' => 'true'))}}
+				{{Form::text('due_payment', number_format($payment,2),array('class' => 'form-control', 'id' => 'change', 'readonly' => 'true'))}}
 			</div>
 			 <div class="col-md-4">
 				<h6>Enter Payment</h6>

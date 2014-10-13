@@ -159,6 +159,10 @@ Route::post('cashier/my-account', 'CadController@updatePassword');
 Route::get('collector/home','CollectorController@showHome');
 Route::get('collector/my-account', 'CollectorController@showMyAccount');
 Route::post('collector/my-account', 'CollectorController@updatePassword');
+
+Route::get('collector/payment/search-oebr','CollectorController@showOEBR');
+Route::post('collector/accept-payment/{id}','CollectorController@acceptPayment');
+
 Route::get('collector/logout', 'AuthController@logout');
 
 /*Cashiering*/
