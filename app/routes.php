@@ -185,6 +185,7 @@ Route::get('cad/my-account', 'CadController@showMyAccount');
 Route::post('cad/my-account', 'CadController@updatePassword');
 Route::get('cad/billing/search','CadController@search');
 Route::get('cad/logout','AuthController@logout');
+Route::get('cad/print-billing-statement/{id}','BillingController@showPdf');
 
 /*Ajax routes*/
 Route::get('admin/ajax/payments-annual/{year}','AjaxController@paymentsAnnual');
