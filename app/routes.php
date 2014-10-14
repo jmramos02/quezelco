@@ -191,6 +191,9 @@ Route::get('manager/ajax/payments-annual/{year}','AjaxController@paymentsAnnualM
 Route::get('manager/ajax/customer-status','AjaxController@customerStatusManager');
 Route::get('manager/ajax/bill-status','AjaxController@billingStatusManager');
 
+Route::get('cad/ajax/customer-status','AjaxController@customerStatus');
+Route::get('cad/ajax/bill-status','AjaxController@billingStatus');
+
 
 /*Manager Routes*/
 Route::get('manager/home','ManagerController@showIndex');
