@@ -110,7 +110,7 @@ class EloquentBillRepository implements BillRepository{
 					 ->join('users', 'accounts.user_id', '=', 'users.id')
 					 ->join('routes', 'accounts.route_id', '=', 'routes.id')
 					 ->whereRaw('oebr_number LIKE ? OR route_name LIKE ?', array($query, $query))
-					 ->select('bills.id as id', 'account_number', 'oebr_number', 'first_name', 'last_name', 'due_date')
+					 ->select('bills.id as id','accounts.id as account_id', 'account_number', 'oebr_number', 'first_name', 'last_name', 'due_date')
 					 ->paginate($this->recordsPerPage);
 
 		return $bills;

@@ -41,20 +41,17 @@
 
 
 		      <li><a href="{{URL::to('cad/home')}}"><i class="fa fa-home"></i> Home</a></li>
-
-		      <li class="dropdown">
-		      	
-		      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		      		<i class="fa fa-dollar"></i> Transactions/Rates <span class="caret"></span></a>
-
-		      	<ul class="dropdown-menu" role="menu">
-		      		<li><a href="{{URL::to('cad/home')}}">Billing</a></li>
-		      		<li><a href="{{URL::to('cad/monitoring')}}">Monitoring</a></li>
-		      	</ul>
-		      	
-		      </li>
 		      	      
-		      <li><a href="{{URL::to('cad/report')}}"><i class="fa fa-file-pdf-o"></i> Reports</a></li>
+		      <li class = "dropdown">
+		      	<a href="" class="dropdown-toggle" data-toggle="dropdown">
+		      		<i class="fa fa-file-pdf-o"> </i> Reports <span class="caret"></span></a>
+		      	<ul class="dropdown-menu" role="menu">
+		      		<li>{{HTML::link('cad/reports/location-list','Location List')}}</li>
+		      		<li>{{HTML::link('cad/reports/sms-list','Sms Users List')}}</li>
+		      		<li>{{HTML::link('cad/reports/route-list',"List of Brgy's")}}</li>
+		      		<li>{{HTML::link('cad/reports/consumer-list', 'Consumer List')}}</li>
+		      	</ul>
+		      	</li>
 		    </ul>
 
 		    <!-- Right Nav Section -->

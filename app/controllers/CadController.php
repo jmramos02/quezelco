@@ -64,4 +64,75 @@ class CadController extends BaseController {
 
 		return Redirect::to('cad/home');
 	}
+
+	public function consumerList(){
+		Fpdf::AddPage();
+		Fpdf::SetFont('Courier','B',16);
+        Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+        Fpdf::SetFont('Courier','',11);
+        Fpdf::Cell(190,10,'Consumer List as of ' . Carbon::now(),0,1,'C');
+        Fpdf::SetFont('Courier','','9');
+
+        Fpdf::SetFillColor(0);
+        Fpdf::SetTextColor(255);
+        Fpdf::SetFont('Courier','B');
+        Fpdf::Cell(38, 10, "Account Number" , 1, 0, 'L', true);
+        Fpdf::Cell(38, 10, "OEBR Number", 1, 0, 'L', true);
+        Fpdf::Cell(38, 10, "Last Name" , 1, 0, 'L', true);
+        Fpdf::Cell(38, 10, "First Name" , 1, 0, 'L', true);
+        Fpdf::Cell(38, 10, "Branch" , 1, 0, 'L', true);
+        Fpdf::Ln();
+
+         $accounts = $this->account->all();
+
+        Fpdf::SetFillColor(255);
+        Fpdf::SetTextColor(0);
+                
+        foreach($accounts as $account){
+        	Fpdf::Cell(38, 6, $account->account_number, 1, 0, 'L', true);
+          	Fpdf::Cell(38, 6, $account->oebr_number, 1, 0, 'L', true);
+        	Fpdf::Cell(38, 6, $account->consumer()->first()->last_name, 1, 0, 'L', true);
+        	Fpdf::Cell(38, 6, $account->consumer()->first()->first_name, 1, 0, 'L', true);
+        	Fpdf::Cell(38, 6, $account->routes()->first()->route_name, 1, 0, 'L', true);
+        	Fpdf::Ln();
+        }
+
+        Fpdf::Output();
+        exit;
+	}
+
+	public function smsList(){
+		Fpdf::AddPage();
+		Fpdf::SetFont('Courier','B',16);
+        Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+        Fpdf::SetFont('Courier','',11);
+        Fpdf::Cell(190,10,'Sms List as of ' . Carbon::now(),0,1,'C');
+        Fpdf::SetFont('Courier','','9');
+
+        Fpdf::SetFillColor(0);
+        Fpdf::SetTextColor(255);
+        Fpdf::SetFont('Courier','B');
+        Fpdf::Cell(45, 10, "Account Number" , 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "Contact Number", 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "Last Name" , 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "First Name" , 1, 0, 'L', true);
+        Fpdf::Ln();
+
+         $contacts = AccountContact::all();
+
+        Fpdf::SetFillColor(255);
+        Fpdf::SetTextColor(0);
+                
+        foreach($contacts as $contact){
+        	Fpdf::Cell(45, 6, $contact->consumer()->first()->account_number, 1, 0, 'L', true);
+          	Fpdf::Cell(45, 6, $contact->contact_number, 1, 0, 'L', true);
+        	Fpdf::Cell(45, 6, $contact->consumer()->first()->consumer()->first()->last_name, 1, 0, 'L', true);
+        	Fpdf::Cell(45, 6, $contact->consumer()->first()->consumer()->first()->first_name, 1, 0, 'L', true);
+        	Fpdf::Ln();
+        }
+
+        Fpdf::Output();
+        exit;
+
+	}
 }

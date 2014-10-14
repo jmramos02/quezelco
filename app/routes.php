@@ -176,11 +176,16 @@ Route::get('consumer/logout','AuthController@logout');
 /*CAD*/
 Route::get('cad/home', 'CadController@showHome');
 Route::get('cad/monitoring', 'CadController@showMonitoring');
+Route::get('cad/reports/location-list','ReportController@generateLocationList');
+Route::get('cad/reports/route-list','ReportController@generateRouteList');
+Route::get('cad/reports/consumer-list','ReportController@generateAccountList');
+Route::get('cad/reports/sms-list','CadController@smsList');
 Route::get('cad/report', 'CadController@showReports');
 Route::get('cad/my-account', 'CadController@showMyAccount');
 Route::post('cad/my-account', 'CadController@updatePassword');
 Route::get('cad/billing/search','CadController@search');
 Route::get('cad/logout','AuthController@logout');
+Route::get('cad/print-billing-statement/{id}','BillingController@showPdf');
 
 /*Ajax routes*/
 Route::get('admin/ajax/payments-annual/{year}','AjaxController@paymentsAnnual');

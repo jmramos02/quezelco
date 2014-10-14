@@ -36,7 +36,6 @@
 					      <th>Name</th>
 					      <th>Due Date</th>
 					      <th>Payment Status</th>
-					      <th>Adjust Billing</th>
 					      <th>Print Billing Statement</th>
 					    </tr>
 					  </thead>
@@ -57,8 +56,7 @@
 								@elseif($bill->payment_status == 3)
 									<td>For Disconnection</td>
 								@endif
-								<td>{{HTML::link('cad/adjust-billing'. $bill->id, 'Adjust Billing' , array('style' => 'color:green'))}}</td>
-								<td>{{HTML::link('admin/print-billing-statement/' . $bill->id, 'Print', array('style' => 'color:green'))}}</td>
+								<td>{{HTML::link('cad/print-billing-statement/' . $bill->account()->first()->id, 'Print', array('style' => 'color:green'))}}</td>
 							</tr>
 					    @endforeach
 					  </tbody>
