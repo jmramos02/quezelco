@@ -213,5 +213,3 @@ Route::get('manager/my-account', 'ManagerController@showMyAccount');
 Route::post('manager/my-account', 'ManagerController@updatePassword');
 
 Route::get('manager/monitoring','ManagerController@showMonitoring');
-
-Route::get('manager/monitoring/test','ManagerController@showTest');
