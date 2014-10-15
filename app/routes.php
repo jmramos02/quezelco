@@ -139,6 +139,8 @@ Route::get('/admin/reports/location-list','ReportController@generateLocationList
 Route::get('/admin/reports/route-list', 'ReportController@generateRouteList');
 Route::get('/admin/reports/consumer-list','ReportController@generateAccountList');
 Route::post('/admin/accounts/textblast','CustomerController@textblast');
+Route::get('admin/reports/sms-list','ReportController@generateSmsList');
+Route::get('admin/reports/others','AdminController@showOtherReports');
 
 /*Resource Controller*/
 Route::resource('admin/location','LocationController');
@@ -213,3 +215,8 @@ Route::get('manager/my-account', 'ManagerController@showMyAccount');
 Route::post('manager/my-account', 'ManagerController@updatePassword');
 
 Route::get('manager/monitoring','ManagerController@showMonitoring');
+
+
+/*Test Routes*/
+
+Route::get('test/sms','ReportController@generateSmsList');

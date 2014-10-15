@@ -83,37 +83,37 @@ class ReportController extends BaseController{
 	}
 
 	public function generateRouteList(){
-		Fpdf::AddPage();
+	       Fpdf::AddPage();
 		Fpdf::SetFont('Courier','B',16);
-        Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
-        Fpdf::SetFont('Courier','',11);
-        Fpdf::Cell(190,10,'Routes List as of ' . Carbon::now(),0,1,'C');
-        Fpdf::SetFont('Courier','','9');
+                Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+                Fpdf::SetFont('Courier','',11);
+                Fpdf::Cell(190,10,'Routes List as of ' . Carbon::now(),0,1,'C');
+                Fpdf::SetFont('Courier','','9');
 
-		Fpdf::SetFillColor(0);
-        Fpdf::SetTextColor(255);
-        Fpdf::SetFont('Courier','B');
-        Fpdf::Cell(48, 10, "ID" , 1, 0, 'L', true);
-        Fpdf::Cell(48, 10, "Route Code" , 1, 0, 'L', true);
-        Fpdf::Cell(48, 10, "Route Name", 1, 0, 'L', true);
-        Fpdf::Cell(48, 10, "District" , 1, 0, 'L', true);
-        Fpdf::Ln();
+        		Fpdf::SetFillColor(0);
+                Fpdf::SetTextColor(255);
+                Fpdf::SetFont('Courier','B');
+                Fpdf::Cell(48, 10, "ID" , 1, 0, 'L', true);
+                Fpdf::Cell(48, 10, "Route Code" , 1, 0, 'L', true);
+                Fpdf::Cell(48, 10, "Route Name", 1, 0, 'L', true);
+                Fpdf::Cell(48, 10, "District" , 1, 0, 'L', true);
+                Fpdf::Ln();
 
-        $routes = QRoute::all();
+                $routes = QRoute::all();
 
-        Fpdf::SetFillColor(255);
-        Fpdf::SetTextColor(0);
-        foreach($routes as $route){
-        	Fpdf::Cell(48, 6, $route->id, 1, 0, 'L', true);
-        	Fpdf::Cell(48, 6, $route->route_code, 1, 0, 'L', true);
-        	Fpdf::Cell(48, 6, $route->route_name, 1, 0, 'L', true);
-        	Fpdf::Cell(48, 6, $route->location()->first()->district, 1, 0, 'L', true);
-        	Fpdf::Ln();
-        }
+                Fpdf::SetFillColor(255);
+                Fpdf::SetTextColor(0);
+                foreach($routes as $route){
+                	Fpdf::Cell(48, 6, $route->id, 1, 0, 'L', true);
+                	Fpdf::Cell(48, 6, $route->route_code, 1, 0, 'L', true);
+                	Fpdf::Cell(48, 6, $route->route_name, 1, 0, 'L', true);
+                	Fpdf::Cell(48, 6, $route->location()->first()->district, 1, 0, 'L', true);
+                	Fpdf::Ln();
+                }
 
-        Fpdf::Output();
-        exit;
-	}
+                Fpdf::Output();
+                exit;
+        	}
 
 	public function generateAccountList(){
 		Fpdf::AddPage();
@@ -150,4 +150,39 @@ class ReportController extends BaseController{
                 Fpdf::Output();
                 exit;
 	}
+
+        public function generateSmsList(){
+                Fpdf::AddPage();
+                Fpdf::SetFont('Courier','B',16);
+                Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+                Fpdf::SetFont('Courier','',11);
+                Fpdf::Cell(190,10,'List of users Enrolled in SMS ' . Carbon::now(),0,1,'C');
+                Fpdf::SetFont('Courier','','9');
+
+                        Fpdf::SetFillColor(0);
+                Fpdf::SetTextColor(255);
+                Fpdf::SetFont('Courier','B');
+                Fpdf::Cell(38, 10, "Account Number" , 1, 0, 'L', true);
+                Fpdf::Cell(38, 10, "OEBR Number", 1, 0, 'L', true);
+                Fpdf::Cell(38, 10, "Last Name" , 1, 0, 'L', true);
+                Fpdf::Cell(38, 10, "First Name" , 1, 0, 'L', true);
+                Fpdf::Cell(38, 10, "Contact Number" , 1, 0, 'L', true);
+                Fpdf::Ln();
+
+                $sms = AccountContact::all();
+
+                Fpdf::SetFillColor(255);
+                Fpdf::SetTextColor(0);
+                foreach($sms as $sms1){
+                        $account = $sms1->account()->first();
+                        Fpdf::Cell(38, 6, $account->account_number, 1, 0, 'L', true);
+                        Fpdf::Cell(38, 6, $account->oebr_number, 1, 0, 'L', true);
+                        Fpdf::Cell(38, 6, $account->consumer()->first()->last_name, 1, 0, 'L', true);
+                        Fpdf::Cell(38, 6, $account->consumer()->first()->first_name, 1, 0, 'L', true);
+                        Fpdf::Cell(38, 6, $sms1->contact_number, 1, 0, 'L', true);
+                        Fpdf::Ln();
+                }
+                Fpdf::Output();
+                exit;
+        }
 }

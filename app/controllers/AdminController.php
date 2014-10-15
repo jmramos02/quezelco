@@ -5,15 +5,17 @@ use Quezelco\Interfaces\GroupRepository as Group;
 use Quezelco\Interfaces\AuthRepository as Auth;
 use Quezelco\Interfaces\RatesRepository as Rates;
 use Quezelco\Interfaces\LogRepository as Logger;
+use Quezelco\Interfaces\LocationRepository as Location;
 
 class AdminController extends BaseController{
 
-	public function __construct(User $user, Group $group, Auth $auth, Rates $rates, Logger $logger){
+	public function __construct(User $user, Group $group, Auth $auth, Rates $rates, Logger $logger, Location $location){
 		$this->user = $user;
 		$this->group = $group;
 		$this->auth = $auth;
 		$this->rates = $rates;
 		$this->logger = $logger;
+		$this->location = $location;
 	}
 
 	public function showIndex(){
@@ -82,5 +84,14 @@ class AdminController extends BaseController{
 		}
 		Session::flash('message','Wheeling Rates Updated');
 		return Redirect::to('admin/wheeling-rates');
+	}
+
+	public function showOtherReports(){
+		$locations = $this->location->all();
+		$arrayLocation = array();
+		foreach($locations as $location){
+			$arrayLocation[$location->id] = $location->location_name;
+		}
+		return View::make('admin.other-reports')->with('locations', $arrayLocation);
 	}
 }

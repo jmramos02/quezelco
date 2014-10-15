@@ -88,6 +88,8 @@
 		      		<li>{{HTML::link('admin/reports/location-list','Location List')}}</li>
 		      		<li>{{HTML::link('admin/reports/route-list',"List of Brgy's")}}</li>
 		      		<li>{{HTML::link('admin/reports/consumer-list', 'Consumer List')}}</li>
+		      		<li>{{HTML::link('admin/reports/sms-list', 'List of SMS Enrolled Accounts')}}</li>
+		      		<li>{{HTML::link('admin/reports/others','Others')}}</li>
 		      	</ul>
 		      	</li>
 		    </ul>
