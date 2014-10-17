@@ -1,4 +1,4 @@
-@extends('cad.template')
+@extends('consumer.template')
 @section('head')
 	{{HTML::style("stylesheets/my-account.css")}}
 @stop
