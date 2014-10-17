@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Fpdf;
 use WheelingRates;
 use Account;
+use Payment;
 
 class EloquentBillRepository implements BillRepository{
 	private $recordsPerPage = 10;
@@ -119,6 +120,18 @@ class EloquentBillRepository implements BillRepository{
 	public function findNextPaymentById($id){
 		$account = Account::find($id);
 		return $bill = Bill::where('account_id', '=', $account->id)->where('payment_status', '=' , 0)->orderBy('id','desc')->first();
+	}
+
+	public function findAllPaymentsByLocation($location_id){
+		$payment = Payment::join('bills','bills.id','=','payment.bill_id')
+					  ->join('accounts', 'accounts.id', '=', 'bills.account_id')
+					  ->join('users', 'users.id', '=', 'accounts.user_id')
+					  ->join('user_location','users.id','=','user_location.user_id')
+					  ->join('locations','locations.id','=','user_location.location_id')
+					  ->where('locations.id', '=' , $location_id)
+					  ->select('locations.location_name as location','users.first_name as first_name','users.last_name as last_name','payment.payment as payment','payment.change as change','payment.created_at as transaction_datetime')
+					  ->get();
+		return $payment;
 	}
 
 }

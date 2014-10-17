@@ -58,7 +58,7 @@
 									<td>For Disconnection</td>
 								@endif
 								<td>{{HTML::link('admin/adjust-billing/'. $bill->id, 'Adjust Billing' , array('style' => 'color:green'))}}</td>
-								<td>{{HTML::link('admin/print-billing-statement/' . $bill->id, 'Print', array('style' => 'color:green'))}}</td>
+								<td>{{HTML::link('admin/print-billing-statement/' . $bill->account()->first()->id, 'Print', array('style' => 'color:green'))}}</td>
 							</tr>
 					    @endforeach
 					  </tbody>

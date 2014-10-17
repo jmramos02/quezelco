@@ -4,14 +4,16 @@ use Quezelco\Interfaces\AccountRepository as Account;
 use Quezelco\Eloquent\EloquentUserRepository as User;
 use Quezelco\Eloquent\EloquentLocationRepository as Location;
 use Quezelco\Eloquent\EloquentRoutesRepository as QRoutes;
+use Quezelco\Eloquent\EloquentBillRepository as Bill;
 
 class ReportController extends BaseController{
 
-	public function __construct(User $user, Location $location, Qroutes $route, Account $account){
+	public function __construct(User $user, Location $location, Qroutes $route, Account $account, Bill $bill){
 		$this->location = $location;
 		$this->user = $user;
 		$this->route = $route;
 		$this->account = $account;
+                $this->bill = $bill;
 	}
 
 	public function generateUserList(){
@@ -159,7 +161,7 @@ class ReportController extends BaseController{
                 Fpdf::Cell(190,10,'List of users Enrolled in SMS ' . Carbon::now(),0,1,'C');
                 Fpdf::SetFont('Courier','','9');
 
-                        Fpdf::SetFillColor(0);
+                Fpdf::SetFillColor(0);
                 Fpdf::SetTextColor(255);
                 Fpdf::SetFont('Courier','B');
                 Fpdf::Cell(38, 10, "Account Number" , 1, 0, 'L', true);
@@ -180,6 +182,41 @@ class ReportController extends BaseController{
                         Fpdf::Cell(38, 6, $account->consumer()->first()->last_name, 1, 0, 'L', true);
                         Fpdf::Cell(38, 6, $account->consumer()->first()->first_name, 1, 0, 'L', true);
                         Fpdf::Cell(38, 6, $sms1->contact_number, 1, 0, 'L', true);
+                        Fpdf::Ln();
+                }
+                Fpdf::Output();
+                exit;
+        }
+
+        public function generatePaymentsByLocation(){
+                $location_id =  Input::get('location');
+                $location = $this->location->find($location_id);
+                $payments = $this->bill->findAllPaymentsByLocation($location_id);
+                Fpdf::AddPage();
+                Fpdf::SetFont('Courier','B',16);
+                Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+                Fpdf::SetFont('Courier','',11);
+                Fpdf::Cell(190,10,'Payment For Location:  ' . $location->location_name ,0,1,'C');
+                Fpdf::SetFont('Courier','','9');
+
+                Fpdf::SetFillColor(0);
+                Fpdf::SetTextColor(255);
+                Fpdf::SetFont('Courier','B');
+                Fpdf::Cell(45, 10, "First Name" , 1, 0, 'L', true);
+                Fpdf::Cell(45, 10, "Last Name", 1, 0, 'L', true);
+                Fpdf::Cell(45, 10, "Transaction Date" , 1, 0, 'L', true);
+                Fpdf::Cell(45, 10, "Due Payment" , 1, 0, 'L', true);
+                   Fpdf::Ln();
+                
+                
+                Fpdf::SetFillColor(255);
+                Fpdf::SetTextColor(0);
+
+                foreach($payments as $payment){
+                        Fpdf::Cell(45, 6, $payment->first_name, 1, 0, 'L', true);
+                        Fpdf::Cell(45, 6, $payment->last_name, 1, 0, 'L', true);
+                        Fpdf::Cell(45, 6, $payment->transaction_datetime, 1, 0, 'L', true);
+                        Fpdf::Cell(45, 6, number_format($payment->payment - $payment->change,2), 1, 0, 'L', true);
                         Fpdf::Ln();
                 }
                 Fpdf::Output();

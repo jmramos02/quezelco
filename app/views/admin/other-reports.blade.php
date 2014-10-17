@@ -16,7 +16,7 @@
 					{{Form::label('from','From')}}
 					{{Form::text('from','',array('class' => 'datepicker'))}}
 					{{Form::label('to','To')}}
-					{{Form::text('from','',array('class' => 'datepicker'))}}
+					{{Form::text('to','',array('class' => 'datepicker'))}}
 					{{Form::submit('Go',array('class' => 'btn btn-primary'))}}
 				{{Form::close()}}
 			</div>

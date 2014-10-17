@@ -141,6 +141,7 @@ Route::get('/admin/reports/consumer-list','ReportController@generateAccountList'
 Route::post('/admin/accounts/textblast','CustomerController@textblast');
 Route::get('admin/reports/sms-list','ReportController@generateSmsList');
 Route::get('admin/reports/others','AdminController@showOtherReports');
+Route::post('admin/reports/collection-per-location','ReportController@generatePaymentsByLocation');
 
 /*Resource Controller*/
 Route::resource('admin/location','LocationController');
@@ -218,5 +219,3 @@ Route::get('manager/monitoring','ManagerController@showMonitoring');
 
 
 /*Test Routes*/
-
-Route::get('test/sms','ReportController@generateSmsList');
