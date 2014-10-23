@@ -1,9 +1,18 @@
-=Maintenance Module
+=Maintenance Module(high)
 
 -Module for updating rates
 -Discounts for senior
 
-=SMS
+=System Admin(high)
+
+-Reports
+	-Amount collected for every brgy and town
+	-Amount to be collected for every brgy and town
+	-Consumer/Customers with Penalty per brgy and town
+	-Number of disconnected consumers per brgy and town
+	-Number of Reconnected consumers per brgy and town
+
+=SMS(high)
 
 -Hindi masyadong clear kung ano yung number na na-activate
 -Default message with display kung kaninong account
@@ -16,13 +25,6 @@
 -CSV/PDF
 
 =System Admin
-
--Reports
-	-Amount collected for every brgy and town
-	-Amount to be collected for every brgy and town
-	-Consumer/Customers with Penalty per brgy and town
-	-Number of disconnected consumers per brgy and town
-	-Number of Reconnected consumers per brgy and town
 
 -Monitoring
 	-Printable
