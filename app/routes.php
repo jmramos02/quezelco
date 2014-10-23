@@ -140,6 +140,7 @@ Route::get('/admin/reports/route-list', 'ReportController@generateRouteList');
 Route::get('/admin/reports/consumer-list','ReportController@generateAccountList');
 Route::post('/admin/accounts/textblast','CustomerController@textblast');
 Route::get('admin/reports/sms-list','ReportController@generateSmsList');
+Route::get('/admin/reports/user-logs','ReportController@generateUserLogs');
 Route::get('admin/reports/others','AdminController@showOtherReports');
 Route::post('admin/reports/collection-per-location','ReportController@generatePaymentsByLocation');
 
