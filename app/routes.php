@@ -143,6 +143,7 @@ Route::get('admin/reports/sms-list','ReportController@generateSmsList');
 Route::get('/admin/reports/user-logs','ReportController@generateUserLogs');
 Route::get('admin/reports/others','AdminController@showOtherReports');
 Route::post('admin/reports/collection-per-location','ReportController@generatePaymentsByLocation');
+Route::post('admin/reports/collection-by-date','ReportController@generatePaymentsByDate');
 
 /*Resource Controller*/
 Route::resource('admin/location','LocationController');

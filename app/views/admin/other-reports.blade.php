@@ -14,9 +14,9 @@
 				<h6>Collection By Date</h6>
 				{{Form::open(array('url' => 'admin/reports/collection-by-date'))}}
 					{{Form::label('from','From')}}
-					{{Form::text('from','',array('class' => 'datepicker'))}}
+					{{Form::text('dtfrom','',array('class' => 'datepicker'))}}
 					{{Form::label('to','To')}}
-					{{Form::text('to','',array('class' => 'datepicker'))}}
+					{{Form::text('dtto','',array('class' => 'datepicker'))}}
 					{{Form::submit('Go',array('class' => 'btn btn-primary'))}}
 				{{Form::close()}}
 			</div>

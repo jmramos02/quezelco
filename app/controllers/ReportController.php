@@ -224,6 +224,20 @@ class ReportController extends BaseController{
         exit;
     }
 
+    public function generatePaymentsByDate()
+    {
+        $dtFrom = date('Y-m-d', strtotime(Input::get('dtfrom')));
+        $dtTo = date('Y-m-d', strtotime(Input::get('dtto')));
+
+        $payments = $this->bill->findAllpaymentsByDates($dtFrom, $dtTo);
+
+        foreach ($payments as $payment => $value) 
+        {
+            print_r($value->id);
+        }
+        die();
+    }
+
     public function generateUserLogs()
     {
         Fpdf::AddPage();
