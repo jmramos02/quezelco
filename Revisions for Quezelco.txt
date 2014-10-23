@@ -3,8 +3,6 @@
 -Module for updating rates
 -Discounts for senior
 
-
-
 =SMS
 
 -Hindi masyadong clear kung ano yung number na na-activate

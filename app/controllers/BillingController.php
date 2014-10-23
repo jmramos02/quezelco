@@ -325,8 +325,8 @@ class BillingController extends BaseController {
         Fpdf::Cell(70,0,number_format($sum,2));
         Fpdf::ln(5);
         Fpdf::SetFont('Courier','',9);
-	$penalty = $sum * 0.12;
-        $penaltyVat = $penalty * 0.12;
+	$penalty = $sum * $rates->penalty;
+        $penaltyVat = $penalty * $rates->penalty;
 	$sum = $sum + $penalty;
 	$penalty = $penalty - $penaltyVat;
         Fpdf::ln(5);
@@ -335,10 +335,10 @@ class BillingController extends BaseController {
         Fpdf::SetFont('Courier','',9);
         Fpdf::ln(5);
         Fpdf::Cell(70,0,'Penalty');
-	Fpdf::Cell(70,0, 0.12);
+	Fpdf::Cell(70,0, $rates->penalty);
 	Fpdf::Cell(70,0, number_format($penalty,2));
         Fpdf::ln(5);
-        Fpdf::Cell(70,0,'Penalty Vat (12%)');
+        Fpdf::Cell(70,0,'Penalty Vat');
         Fpdf::Cell(70,0, 0.12);
         Fpdf::Cell(70,0, number_format($penaltyVat,2));
 	Fpdf::ln(5);
@@ -349,7 +349,7 @@ class BillingController extends BaseController {
         Fpdf::SetFont('Courier','',9);
 
 	Fpdf::Cell(70,0,'Reconnection Fee');
-	Fpdf::Cell(70,0, 112);
+	Fpdf::Cell(70,0, $rates->reconnection_fee);
 	Fpdf::Cell(70,0, number_format(112,2));
 	$sum = $sum + 112;
 

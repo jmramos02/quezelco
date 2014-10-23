@@ -51,12 +51,12 @@ class CashierController extends BaseController{
 			$sum += $rates->environmental_charge * $consumed;
 			$sum += $rates->npc_stranded_cont_cost * $consumed;
 			if($bill->payment_status == 2){
-				$penalty = $sum * 0.12;
+				$penalty = $sum * $rates->penalty;
 				$sum += $penalty;
 			}else if($bill->status == 3){
-				$penalty = $sum * 0.12;
+				$penalty = $sum * $rates->penalty;
 				$sum += $penalty;
-				$sum += 112;
+				$sum += $rates->reconnection_fee;
 			}
 			return View::make('cashier.payment')->with('bill',$bill)->with('payment',$sum)->with('oebr',$oebr);
 		}
