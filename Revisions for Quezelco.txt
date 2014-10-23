@@ -1,8 +1,3 @@
-=Maintenance Module(high)
-
-
-=System Admin(high)
-
 -Reports
 	-Amount collected for every brgy and town
 	-Amount to be collected for every brgy and town
@@ -10,20 +5,12 @@
 	-Number of disconnected consumers per brgy and town
 	-Number of Reconnected consumers per brgy and town
 
-=SMS(high)
-
-
 =Customer/Consumer
 
--Graph for Billing History
 -Table for billing history transactions
 -CSV/PDF
 
 =System Admin
-
--Monitoring
-	-Printable
-	-Search by town/brgy
 
 -User Maintenance
 	-Not editable
@@ -34,11 +21,3 @@
 	
 -My Account
 	-Forgot Password
-
--User Logs
-	-Search Filters
-	-Instructions for Search
-
--Test Cases
-	-From creation to reports
-	-Printed reports
