@@ -1,11 +1,13 @@
 <?php
 use Quezelco\Interfaces\AccountRepository as Account;
 use Quezelco\Interfaces\AuthRepository as Auth;
+use Quezelco\Interfaces\BillRepository as Bill;
 class ConsumerController extends BaseController{
 
-	public function __construct(Account $account, Auth $auth){
+	public function __construct(Account $account, Auth $auth, Bill $bill){
 		$this->account = $account;
 		$this->auth = $auth;
+		$this->bill = $bill;
 	}
 
 	public function showHome(){
@@ -64,5 +66,12 @@ class ConsumerController extends BaseController{
 		$user->save();
 
 		return Redirect::to('consumer/home');
+	}
+
+	public function showBillingHistory(){
+		$user = $this->auth->getCurrentUser();
+		$account = $this->account->findAccountsByUser($user)->first();
+		$bills = $this->bill->findByAccount($account);
+		return View::make('consumer.billing-history')->with('bills', $bills);
 	}
 }

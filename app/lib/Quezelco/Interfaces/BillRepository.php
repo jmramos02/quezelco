@@ -8,5 +8,6 @@ interface BillRepository{
 	public function paginate();
 	public function findNextPayment($oebr_number);
 	public function findNextPaymentById($id);
+	public function findByAccount($account);
 	public function findAllPaymentsByLocation($location_id);
 }

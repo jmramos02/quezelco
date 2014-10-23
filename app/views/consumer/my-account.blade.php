@@ -22,9 +22,7 @@
 							<div class="error">{{$errors->first('repeat_new_password')}}</div>
 							{{Form::label('repeat_new_password','Repeat New Password')}}
 							{{Form::text('repeat_new_password',Input::old('repeat_new_password'))}}
-							
-								{{Form::submit('Reset Password',array('class' => 'tiny button reset-password'))}}
-							
+							{{Form::submit('Reset Password',array('class' => 'tiny button reset-password'))}}
 					{{Form::close()}}
 				</div>
 			</div>

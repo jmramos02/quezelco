@@ -170,6 +170,7 @@ Route::post('collector/accept-payment/{id}','CollectorController@acceptPayment')
 Route::get('collector/logout', 'AuthController@logout');
 
 /*Cashiering*/
+Route::get('consumer/billing-history','ConsumerCOntroller@showBillingHistory');
 Route::get('consumer/home','ConsumerController@showHome');
 Route::get('consumer/enroll/{id}','ConsumerController@showEnroll');
 Route::post('consumer/enroll/{id}','ConsumerController@enroll');

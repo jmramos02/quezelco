@@ -134,4 +134,9 @@ class EloquentBillRepository implements BillRepository{
 		return $payment;
 	}
 
+	public function findByAccount($account){
+		$bills = Bill::where('account_id', '=', $account->id)->paginate(5);
+		return $bills;
+	}
+
 }
