@@ -32,6 +32,7 @@ class EloquentRatesRepository implements RatesRepository{
 		$rates->npc_stranded_cont_cost = $inputs['npc_stranded_cont_cost'];
 		$rates->sr_citizen_subsidy = $inputs['sr_citizen_subsidy']; 	
 		$rates->penalty = $inputs['penalty'];
+		$rates->reconnection_fee = $inputs['reconnection_fee'];
 		return $rates->save();
 	}
 
@@ -56,6 +57,7 @@ class EloquentRatesRepository implements RatesRepository{
 			'npc_stranded_cont_cost' => 'required|numeric',
 			'sr_citizen_subsidy' => 'required|numeric',
 			'penalty' => 'required|numeric',
+			'reconnection_fee' => 'required|numeric',
 			'username' => 'required',
 			'password' => 'required'
 		);

@@ -22,6 +22,7 @@ class WheelingRatesSeeder extends Seeder{
 		$rates->npc_stranded_cont_cost = 0.1938;
 		$rates->sr_citizen_subsidy = 0.0004;	
 		$rates->penalty = 0.0005;
+		$rates->reconnection_fee = 0.0006;
 		$rates->save();
 	}
 }

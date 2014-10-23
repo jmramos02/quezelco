@@ -33,6 +33,7 @@ class WheelingRatesTable extends Migration {
 			$table->double('npc_stranded_cont_cost',10,5);
 			$table->double('sr_citizen_subsidy',10,5);
 			$table->double('penalty',10,5);
+			$table->double('reconnection_fee',10,5);
 			$table->timeStamps();
 		});
 	}

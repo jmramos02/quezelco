@@ -162,6 +162,12 @@
 				{{Form::text('penalty',$rates->penalty,array('class' => 'form-control'))}}
 				<div class="error">{{$errors->first('penalty')}}</div>
 			</div>
+
+			<div class="col-md-4">
+				<h6>Reconnection Fee</h6>
+				{{Form::text('reconnection_fee',$rates->reconnection_fee,array('class' => 'form-control'))}}
+				<div class="error">{{$errors->first('reconnection_fee')}}</div>
+			</div>
 		</div>	
 		<div class="col-md-12">
 			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> Save </button>
