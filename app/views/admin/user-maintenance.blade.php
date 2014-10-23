@@ -74,7 +74,7 @@
 			      	@if($user->last_login == null)
 						No logins yet
 			      	@else
-						{{$user->last_login}}
+						{{date('F d, Y h:s A', strtotime($user->last_login))}}
 			      	@endif
 			      </td>
 			      <td>{{Sentry::findUserByID($user->id)->getGroups()[0]->name}}</td>

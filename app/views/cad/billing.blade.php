@@ -46,7 +46,7 @@
 								<td>{{$bill->oebr_number}}</td>
 								<td>{{$bill->account_number}}</td>
 								<td>{{$bill->last_name}} , {{$bill->first_name}}</td>
-								<td>{{$bill->due_date}}</td>
+								<td>{{date('F d, Y', strtotime($bill->due_date))}}</td>
 								@if($bill->payment_status == 0)
 									<td>Not Yet Paid</td>
 								@elseif($bill->payment_status == 1)

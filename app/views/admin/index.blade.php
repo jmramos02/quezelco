@@ -40,7 +40,7 @@
 							<tbody>
 								@foreach($logs as $log)
 									<tr>
-										<td>{{$log->created_at}}</td>
+										<td>{{date('F d, Y h:s A', strtotime($log->created_at))}}</td>
 										<td>{{$log->user()->first()->last_name}}</td>
 										<td>{{$log->user()->first()->first_name}}</td>
 										<td>{{$log->user()->first()->username}}</td>
