@@ -19,7 +19,7 @@
 			      <th>Status</th>
 			      <th>Current Reading</th>
 			      <th>Previous Reading</th>
-				  <th>Enroll for SMS</th>			      
+				  <th>Register for SMS</th>			      
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -38,7 +38,7 @@
 			      </td>
 			      <td>{{number_format($account->current_reading,2)}}</td>
 			      <td>{{number_format($account->previous_reading,2)}}</td>
-			      <td>{{HTML::link('consumer/enroll/' . $account->id, 'Enroll')}}</td>
+			      <td>{{HTML::link('consumer/enroll/' . $account->id, 'Register For SMS')}}</td>
 			   	</tr>
 			   @endforeach
 			  </tbody>
