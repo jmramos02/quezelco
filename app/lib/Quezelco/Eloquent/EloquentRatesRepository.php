@@ -18,7 +18,7 @@ class EloquentRatesRepository implements RatesRepository{
 		$rates->system_loss_charge = $inputs['system_loss_charge'];
 		$rates->dist_system_charge = $inputs['dist_system_charge'];
 		$rates->retail_end_user_charge = $inputs['retail_end_user_charge'];
-		$rates->retail_customer_charge = $inputs['retail_customer_user_charge'];
+		$rates->retail_customer_charge = $inputs['retail_customer_charge'];
 		$rates->lifeline_subsidy = $inputs['lifeline_subsidy'];
 		$rates->prev_yrs_adj_pwr_cost = $inputs['prev_yrs_adj_pwr_cost'];
 		$rates->contribution_for_capex = $inputs['contribution_for_capex'];
@@ -31,6 +31,7 @@ class EloquentRatesRepository implements RatesRepository{
 		$rates->environmental_charge = $inputs['environmental_charge'];
 		$rates->npc_stranded_cont_cost = $inputs['npc_stranded_cont_cost'];
 		$rates->sr_citizen_subsidy = $inputs['sr_citizen_subsidy']; 	
+		$rates->penalty = $inputs['penalty'];
 		return $rates->save();
 	}
 
@@ -54,6 +55,7 @@ class EloquentRatesRepository implements RatesRepository{
 			'environmental_charge' => 'required|numeric',
 			'npc_stranded_cont_cost' => 'required|numeric',
 			'sr_citizen_subsidy' => 'required|numeric',
+			'penalty' => 'required|numeric',
 			'username' => 'required',
 			'password' => 'required'
 		);
