@@ -29,7 +29,8 @@ class ConsumerController extends BaseController{
 			$contact->account_id = $id;
 			$contact->contact_number = Input::get('number');
 			$contact->save();
-			Twilio::message('+63' . Input::get('number'),'Your number has been successfuly enrolled! -Quezelco Management');
+			$account = $this->account->find($id);
+			Twilio::message('+63' . Input::get('number'),'Your number has been successfuly enrolled! -Quezelco Management Account Number: ' . $account->account_number);
 		}
 		Session::flash('message','You will received a message shortly regarding on the confirmation of your sms enrollment');
 		return Redirect::to('consumer/home');

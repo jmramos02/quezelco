@@ -1,6 +1,5 @@
 =Maintenance Module(high)
 
--Module for updating rates
 -Discounts for senior
 
 =System Admin(high)
@@ -14,9 +13,6 @@
 
 =SMS(high)
 
--Hindi masyadong clear kung ano yung number na na-activate
--Default message with display kung kaninong account
--Change Enroll to Register SMS
 
 =Customer/Consumer
 
