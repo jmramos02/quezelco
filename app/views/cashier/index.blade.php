@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-md-6">
 				<h6>Senior Citizen ?</h6>
-				{{Form::checkbox('is_senior','',false,array('class' => 'form-control'))}}
+				{{Form::checkbox('is_senior',null,false)}}
 			</div>
 			<div class="col-md-12">	
 				<input type="submit" class="btn btn-primary btn-lg" value="Search">

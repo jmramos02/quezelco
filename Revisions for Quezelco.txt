@@ -1,6 +1,5 @@
 =Maintenance Module(high)
 
--Discounts for senior
 
 =System Admin(high)
 
