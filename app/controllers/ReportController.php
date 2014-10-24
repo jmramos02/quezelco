@@ -231,11 +231,36 @@ class ReportController extends BaseController{
 
         $payments = $this->bill->findAllpaymentsByDates($dtFrom, $dtTo);
 
-        foreach ($payments as $payment => $value) 
-        {
-            print_r($value->id);
+        
+
+        Fpdf::AddPage();
+        Fpdf::SetFont('Courier','B',16);
+        Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+        Fpdf::SetFont('Courier','',11);
+        Fpdf::Cell(190,10,'Payments From Date: ' . date('F d, Y', strtotime($dtFrom)) . ' to ' . date('F d, Y', strtotime($dtTo)),0,1,'C');
+        Fpdf::SetFont('Courier','','9');
+
+        Fpdf::SetFillColor(0);
+        Fpdf::SetTextColor(255);
+        Fpdf::SetFont('Courier','B');
+        Fpdf::Cell(45, 10, "First Name" , 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "Last Name", 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "Transaction Date" , 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "Due Payment" , 1, 0, 'L', true);
+        Fpdf::Ln();
+
+        Fpdf::SetFillColor(255);
+        Fpdf::SetTextColor(0);
+
+        foreach($payments as $payment){
+                Fpdf::Cell(45, 6, $payment->first_name, 1, 0, 'L', true);
+                Fpdf::Cell(45, 6, $payment->last_name, 1, 0, 'L', true);
+                Fpdf::Cell(45, 6, $payment->transaction_datetime, 1, 0, 'L', true);
+                Fpdf::Cell(45, 6, number_format($payment->payment - $payment->change,2), 1, 0, 'L', true);
+                Fpdf::Ln();
         }
-        die();
+        Fpdf::Output();
+        exit;
     }
 
     public function generateUserLogs()

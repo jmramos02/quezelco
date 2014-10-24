@@ -137,8 +137,13 @@ class EloquentBillRepository implements BillRepository{
 	public function findAllpaymentsByDates($dtFrom, $dtTo)
 	{
 		$payments = Payment::join('bills', 'bills.id', '=', 'payment.bill_id')
-							->where('bills.start_date', '<=', $dtFrom)
-							->where('bills.end_date', '>=', $dtTo)
+							->join('accounts', 'accounts.id', '=', 'bills.account_id')
+							->join('users', 'users.id', '=', 'accounts.user_id')
+							->where('payment.created_at', '>=', $dtFrom)
+							->where('payment.created_at', '<=', $dtTo)
+							->select('users.first_name as first_name','users.last_name as last_name',
+								'payment.payment as payment','payment.change as change',
+								'payment.created_at as transaction_datetime')
 							->get();
 		return $payments;
 	}
