@@ -269,7 +269,7 @@ class ReportController extends BaseController{
         Fpdf::SetFont('Courier','B',16);
         Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
         Fpdf::SetFont('Courier','',11);
-        Fpdf::Cell(190,10,'List of Users who logged in/out in the system ' . Carbon::now(),0,1,'C');
+        Fpdf::Cell(190,10,'List of Users who logged in/out in the system as of ' . Carbon::now(),0,1,'C');
         Fpdf::SetFont('Courier','','9');
 
 
