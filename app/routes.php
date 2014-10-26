@@ -146,6 +146,7 @@ Route::post('admin/reports/collection-per-location','ReportController@generatePa
 Route::post('admin/reports/collection-by-date','ReportController@generatePaymentsByDate');
 Route::post('admin/reports/disconnected-per-town','ReportController@generateDisconnectedPerTown');
 Route::post('admin/reports/connected-per-town','ReportController@generateConnectedPerTown');
+Route::post('admin/reports/penalty-per-town','ReportController@generatePenaltyPerTown');
 
 /*Resource Controller*/
 Route::resource('admin/location','LocationController');

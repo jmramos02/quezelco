@@ -389,4 +389,42 @@ class ReportController extends BaseController{
         Fpdf::Output();
         exit;
     }
+
+    public function generatePenaltyPerTown()
+    {
+        $location_id =  Input::get('location');
+        $location = $this->location->find($location_id);
+        $results = $this->bill->findAllWithPenalty($location->id);
+
+        Fpdf::AddPage();
+        Fpdf::SetFont('Courier','B',16);
+        Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+        Fpdf::SetFont('Courier','',11);
+        Fpdf::Cell(190,10,'Consumers with Penalty at Location:  ' . $location->location_name,0,1,'C');
+        Fpdf::SetFont('Courier','','9');
+
+        Fpdf::SetFillColor(0);
+        Fpdf::SetTextColor(255);
+        Fpdf::SetFont('Courier','B');
+        Fpdf::Cell(45, 10, "First Name" , 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "Last Name", 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "OEBR NUMBER" , 1, 0, 'L', true);
+        Fpdf::Cell(45, 10, "ROUTE NAME" , 1, 0, 'L', true);
+        Fpdf::Ln();
+        
+
+        foreach($results as $result)
+        {
+            Fpdf::SetFillColor(255);
+            Fpdf::SetTextColor(0);
+
+            Fpdf::Cell(45, 6, $result->firstname, 1, 0, 'L', true);
+            Fpdf::Cell(45, 6, $result->lastname, 1, 0, 'L', true);
+            Fpdf::Cell(45, 6, $result->oebrnumber, 1, 0, 'L', true);
+            Fpdf::Cell(45, 6, $result->routename, 1, 0, 'L', true);
+            Fpdf::Ln();
+        }
+        Fpdf::Output();
+        exit;
+    }
 }

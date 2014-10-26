@@ -31,6 +31,12 @@
 					{{Form::select('location',$locations)}}
 					{{Form::submit('Go',array('class' => 'btn btn-primary'))}}
 				{{Form::close()}}
+				<h6>Consumer with Penalty Per Town</h6>
+				{{Form::open(array('url' => 'admin/reports/penalty-per-town'))}}
+					{{Form::label('location','Select Location')}}
+					{{Form::select('location',$locations)}}
+					{{Form::submit('Go',array('class' => 'btn btn-primary'))}}
+				{{Form::close()}}
 			</div>
 		</div>
 @stop
