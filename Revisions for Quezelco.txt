@@ -2,8 +2,8 @@
 	-Amount collected for every brgy and town
 	-Amount to be collected for every brgy and town
 	-Consumer/Customers with Penalty per brgy and town
-	-Number of disconnected consumers per brgy and town
-	-Number of Reconnected consumers per brgy and town
+	-Number of disconnected consumers per brgy and town //check
+	-Number of Reconnected consumers per brgy and town //check
 
 =Customer/Consumer
 
