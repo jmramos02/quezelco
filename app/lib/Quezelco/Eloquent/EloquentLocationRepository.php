@@ -51,4 +51,17 @@
  		return QRoute::where('location_id','=',$location_id)->get();
  	}
 
+ 	public function findDisconnectedConnectedAccounts($locationid, $status)
+ 	{
+ 		$connect = Location::join('routes', 'locations.id', '=', 'routes.location_id')
+ 								->join('accounts', 'routes.id', '=', 'accounts.route_id')
+ 								->join('users', 'accounts.user_id', '=', 'users.id')
+ 								->where('accounts.status', '=', $status)
+ 								->where('locations.id', '=', $locationid)
+ 								->select('users.first_name as firstname', 'users.last_name as lastname',
+ 										'accounts.oebr_number as oebrnumber', 'routes.route_name as routename')
+ 								->get();
+ 		return $connect;
+ 	}
+
  }

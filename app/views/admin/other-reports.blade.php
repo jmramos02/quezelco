@@ -19,6 +19,18 @@
 					{{Form::text('dtto','',array('class' => 'datepicker'))}}
 					{{Form::submit('Go',array('class' => 'btn btn-primary'))}}
 				{{Form::close()}}
+				<h6>Disconnected Per Town</h6>
+				{{Form::open(array('url' => 'admin/reports/disconnected-per-town'))}}
+					{{Form::label('location','Select Location')}}
+					{{Form::select('location',$locations)}}
+					{{Form::submit('Go',array('class' => 'btn btn-primary'))}}
+				{{Form::close()}}
+				<h6>Connected Per Town</h6>
+				{{Form::open(array('url' => 'admin/reports/connected-per-town'))}}
+					{{Form::label('location','Select Location')}}
+					{{Form::select('location',$locations)}}
+					{{Form::submit('Go',array('class' => 'btn btn-primary'))}}
+				{{Form::close()}}
 			</div>
 		</div>
 @stop
