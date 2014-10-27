@@ -224,6 +224,46 @@ class ReportController extends BaseController{
         exit;
     }
 
+    public function generatetobePaymentsByLocation()
+    {
+        Fpdf::AddPage();
+        Fpdf::SetFont('Courier','B',16);
+        Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+        Fpdf::SetFont('Courier','',11);
+        Fpdf::Cell(190,10,'Payment For Locations To Be Collected',0,1,'C');
+        Fpdf::SetFont('Courier','','9');
+
+        Fpdf::SetFillColor(0);
+        Fpdf::SetTextColor(255);
+        Fpdf::SetFont('Courier','B');
+        Fpdf::Cell(95, 10, "Location Name" , 1, 0, 'L', true);
+        Fpdf::Cell(95, 10, "Amount", 1, 0, 'L', true);
+        Fpdf::Ln();
+        
+        
+        Fpdf::SetFillColor(255);
+        Fpdf::SetTextColor(0);
+
+
+        $locations = $this->location->all();
+
+        foreach ($locations as $loc) 
+        {
+            Fpdf::Cell(95, 7, $loc->location_name, 1, 0, 'L', true);
+            $payments = $this->bill->findAllPaymentsByLocation($loc->id);
+            $sumOfAllPayments = 0;
+            foreach ($payments as $payment) 
+            {
+                $sumOfAllPayments = $payment->payment - $payment->change;
+            }
+            Fpdf::Cell(95, 7, number_format($sumOfAllPayments,2), 1, 0, 'L', true);
+            Fpdf::Ln();
+        }
+
+        Fpdf::Output();
+        exit;
+    }
+
     public function generatePaymentsByDate()
     {
         $dtFrom = date('Y-m-d', strtotime(Input::get('dtfrom')));

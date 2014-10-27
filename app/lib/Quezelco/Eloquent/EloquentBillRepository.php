@@ -8,6 +8,7 @@ use Fpdf;
 use WheelingRates;
 use Account;
 use Payment;
+use Location;
 
 class EloquentBillRepository implements BillRepository{
 	private $recordsPerPage = 10;
