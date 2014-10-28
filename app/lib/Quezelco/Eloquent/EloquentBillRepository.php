@@ -108,12 +108,25 @@ class EloquentBillRepository implements BillRepository{
 	{
 		$query = "%$search_key%";
 
-		$bills = Bill::join('accounts', 'bills.account_id', '=', 'accounts.id')
-					 ->join('users', 'accounts.user_id', '=', 'users.id')
-					 ->join('routes', 'accounts.route_id', '=', 'routes.id')
-					 ->whereRaw('oebr_number LIKE ? OR route_name LIKE ?', array($query, $query))
-					 ->select('bills.id as id','accounts.id as account_id', 'account_number', 'oebr_number', 'first_name', 'last_name', 'due_date')
-					 ->paginate($this->recordsPerPage);
+		if($search_key == ''){
+			$bills = Bill::join('accounts', 'bills.account_id', '=', 'accounts.id')
+				 ->join('users', 'accounts.user_id', '=', 'users.id')
+				 ->join('routes', 'accounts.route_id', '=', 'routes.id')
+				 ->Where('bills.payment_status', '=', 0)
+				 ->select('bills.id as id','accounts.id as account_id', 'account_number', 'oebr_number', 'first_name', 'last_name', 'due_date','bills.payment_status as payment_status')
+				 ->paginate($this->recordsPerPage);
+		}else{
+			$bills = Bill::join('accounts', 'bills.account_id', '=', 'accounts.id')
+				 ->join('users', 'accounts.user_id', '=', 'users.id')
+				 ->join('routes', 'accounts.route_id', '=', 'routes.id')
+				 ->orWhere('accounts.oebr_number', '=' , $query)
+				 ->orWhere('routes.route_name','=', $query)
+				 ->Where('bills.payment_status', '=', 0)
+				 ->select('bills.id as id','accounts.id as account_id', 'account_number', 'oebr_number', 'first_name', 'last_name', 'due_date','bills.payment_status as payment_status')
+				 ->paginate($this->recordsPerPage);
+		}
+
+
 
 		return $bills;
 	}
