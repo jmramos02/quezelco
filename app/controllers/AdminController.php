@@ -87,11 +87,26 @@ class AdminController extends BaseController{
 	}
 
 	public function showOtherReports(){
+		$tables = array('users' => 'users',
+                        'accounts' => 'accounts',
+                        'accounts_contact' => 'accounts_contact',
+                        'audit_trails' => 'audit_trails',
+                        'bills' => 'bills',
+                        'groups' => 'groups',
+                        'locations' => 'location',
+                        'logs' => 'logs',
+                        'migrations' => 'migrations',
+                        'payment' => 'payment',
+                        'routes' => 'routes',
+                        'throttle' => 'throttle',
+                        'users_groups' => 'users_groups',
+                        'user_location' => 'user_location',
+                        'wheeling_rates' => 'wheeling_rates');
 		$locations = $this->location->all();
 		$arrayLocation = array();
 		foreach($locations as $location){
 			$arrayLocation[$location->id] = $location->location_name;
 		}
-		return View::make('admin.other-reports')->with('locations', $arrayLocation);
+		return View::make('admin.other-reports')->with('locations', $arrayLocation)->with('tables', $tables);
 	}
 }

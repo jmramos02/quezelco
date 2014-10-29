@@ -17,6 +17,22 @@ class ReportController extends BaseController{
         $this->log = $log;
 	}
 
+    public function generateBackup(){
+        $table = Input::get('table');
+        $chingchong = DB::table($table)->get();
+        $output = '';
+        foreach ($chingchong as $row) {
+            $output .= implode(",",(array) $row);
+        }
+        $headers = array(
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="ExportFileName.csv"',
+        );
+ 
+        return Response::make(rtrim($output, "\n"), 200, $headers);
+
+    }
+
 	public function generateUserList(){
 		Fpdf::AddPage();
 		Fpdf::SetFont('Courier','B',16);

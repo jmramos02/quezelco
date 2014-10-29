@@ -143,6 +143,7 @@ Route::get('admin/reports/sms-list','ReportController@generateSmsList');
 Route::get('/admin/reports/user-logs','ReportController@generateUserLogs');
 Route::get('admin/reports/others','AdminController@showOtherReports');
 Route::post('admin/reports/collection-per-location','ReportController@generatePaymentsByLocation');
+Route::post('admin/reports/backup','ReportController@generateBackup');
 Route::post('admin/reports/collection-by-date','ReportController@generatePaymentsByDate');
 Route::post('admin/reports/disconnected-per-town','ReportController@generateDisconnectedPerTown');
 Route::post('admin/reports/connected-per-town','ReportController@generateConnectedPerTown');
