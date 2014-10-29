@@ -175,7 +175,7 @@ class EloquentBillRepository implements BillRepository{
 							->join('accounts', 'accounts.id', '=', 'bills.account_id')
 							->join('users', 'users.id', '=', 'accounts.user_id')
 							->join('routes', 'accounts.route_id', '=', 'routes.id')
-							->where('payment.status', '=', 2)
+							->where('bills.payment_status', '=', 2)
 							->select('users.first_name as firstname', 'users.last_name as lastname',
  										'accounts.oebr_number as oebrnumber', 'routes.route_name as routename')
 							->get();
