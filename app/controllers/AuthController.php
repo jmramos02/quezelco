@@ -80,4 +80,32 @@ class AuthController extends BaseController{
 		}
 		
 	}
+	public function forgotPassword(){
+		$username = Input::get('username');
+		$first_name = Input::get('first_name');
+		$last_name = Input::get('last_name');
+		$cell_no = Input::get('cell_no');
+		if(strlen(strval($cell_no)) != 10){
+			return View::make('forgot-password')->with('error_message','Your cell number must be 10 digits');
+		}else if(!is_numeric($cell_no)){
+			return View::make('forgot-password')->with('error_message','Invalid Contact Number');
+		}else{
+			$user = User::where('username', '=', $username)
+					->where('first_name', '=', $first_name)
+					->where('last_name','=', $last_name)->first();
+			if(is_null($user)){
+				return View::make('forgot-password')->with('error_message','No user found');
+			}else{
+				$sentryUser = $this->auth->find($user->id);
+				$length = 10;
+				//generate random shit
+				$randomString = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+				$sentryUser->password = $randomString;
+				$sentryUser->save();
+				$message = "Your new password is: " . $randomString . ' Please change your password immediately - Quezelco System Admin';
+				Twilio::message('+63' . $cell_no, $message);
+				return View::make('login')->with('message', 'Your new password is sent to your cellphone number');
+			}
+		}
+	}
 }

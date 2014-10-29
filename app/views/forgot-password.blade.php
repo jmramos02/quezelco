@@ -21,19 +21,23 @@
 <body>
 	<!-- Main Content -->
     <div class="row">
-      <h3 class="login-title">QUEZELCO Electric Billing System</h3>
+      <h3 class="login-title">Forgot Password</h3>
     <div class="large-6 small-centered column login-container">
       <div class="logo-container">
         {{HTML::image('images/logo.png','',array('class'=>'logo'))}}
       </div>
-        {{Form::open(array('url' => '/index','method' => 'post'))}}
+        {{Form::open(array('url' => '/forgot-password','method' => 'post'))}}
           {{Form::label('username','Username')}}
           {{Form::text('username')}}
-          {{Form::label('password','Password')}}
-          {{Form::password('password')}}
-          {{Form::submit('Login',array('class'=>'button'))}}
+          {{Form::label('first_name','First Name')}}
+          {{Form::text('first_name')}}
+          {{Form::label('last_name','Last Name')}}
+          {{Form::text('last_name')}}
+          {{Form::label('cell_no','Cell No. (your new password will be sent here)')}}
+          {{Form::text('cell_no','',array('maxlength' => '10'))}}
+          {{Form::submit('Submit',array('class'=>'button'))}}
+          {{HTML::link('/index','Back',array('class' => 'button'))}}
         {{Form::close()}}
-
         <!--Laravel Errors/Notifications-->
         @if(isset($error_message))
           <h6 style = "color:red">{{$error_message}}</h6>
@@ -42,10 +46,6 @@
         @if(isset($logout_message))
           <h6 style = "color:blue">{{$logout_message}}</h6>
         @endif
-         @if(isset($message))
-          <h6 style = "color:blue">{{$message}}</h6>
-        @endif
-         <h6 style = "color:blue">{{HTML::link('/forgot-password', 'Forgot Password')}}</h6>
       </div>
 
     </div>

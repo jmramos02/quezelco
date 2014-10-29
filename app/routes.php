@@ -94,6 +94,10 @@ Route::when('admin/*', 'admin');
 /*-----Routing------*/
 Route::get('/','AuthController@showLoginForm');
 Route::get('/index','AuthController@showLoginForm');
+Route::get('forgot-password',function(){
+	return View::make('forgot-password');
+});
+Route::post('/forgot-password','AuthController@forgotPassword');
 
 /* Controller Routes */
 Route::post('/index','AuthController@validateLogin');

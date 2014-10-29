@@ -40,7 +40,7 @@ class SentryAuthRepository implements AuthRepository{
 	}
 
 	public function find($id){
-		return Sentry::find($id);
+		return Sentry::findUserById($id);
 	}
 	public function findUserByCredentials($inputs){
 		 try{
