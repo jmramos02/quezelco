@@ -101,7 +101,7 @@ class EloquentBillRepository implements BillRepository{
 
 	public function findNextPayment($oebr_number){
 		$account = Account::where('oebr_number', '=', $oebr_number)->first();
-		return $bill = Bill::where('account_id', '=', $account->id)->where('payment_status', '=' , 0)->orderBy('id','desc')->first();
+		return $bill = Bill::where('account_id', '=', $account->id)->where('payment_status', '!=' , 1)->orderBy('id','desc')->first();
 	}
 
 	public function search($search_key)
@@ -112,7 +112,9 @@ class EloquentBillRepository implements BillRepository{
 			$bills = Bill::join('accounts', 'bills.account_id', '=', 'accounts.id')
 				 ->join('users', 'accounts.user_id', '=', 'users.id')
 				 ->join('routes', 'accounts.route_id', '=', 'routes.id')
-				 ->Where('bills.payment_status', '=', 0)
+				 ->where('bills.payment_status', '=', 0)
+				 ->orWhere('bills.payment_status','=',2)
+				 ->orWhere('bills.payment_status', '=', 3)
 				 ->select('bills.id as id','accounts.id as account_id', 'account_number', 'oebr_number', 'first_name', 'last_name', 'due_date','bills.payment_status as payment_status')
 				 ->paginate($this->recordsPerPage);
 		}else{

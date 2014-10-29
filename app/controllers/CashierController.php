@@ -86,16 +86,15 @@ class CashierController extends BaseController{
 				return Redirect::to('cashier/payment/search-oebr?oebr=' . $oebr)->withErrors($validator);
 			}
 			$bill = $this->bill->find($id);
-			$bill->payment_status = 1;
-			$bill->save();
 			$payment = new Payment();
 			$payment->payment = Input::get('payment');
 			$payment->change = Input::get('payment') - $formattedValue;
 			$payment->bill_id = $id;
 			$payment->cashier_id = $this->auth->getCurrentUser()->id;
 			$payment->status = $bill->payment_status;
-
 			$payment->save();
+			$bill->payment_status = 1;
+			$bill->save();
 			Session::flash('message','Payment Accepted! Change is: ' . $payment->change);
 			return Redirect::to('cashier/home');
 		}
