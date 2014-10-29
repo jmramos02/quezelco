@@ -41,6 +41,7 @@ class AuthController extends BaseController{
 
 	public function logout(){
 		$user = $this->auth->getCurrentUser();
+		return var_dump($user);
 		$this->logger->add($user->id, false);
 		$this->auth->logout();
 		return View::make('login')->with('logout_message' ,'User Succesfully Logout');
