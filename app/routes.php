@@ -162,6 +162,8 @@ Route::resource('admin/billing','BillingController');
 
 /*CASHIERING*/
 Route::get('cashier/home','CashierController@showHome');
+Route::get('cashier/reprint','CashierController@reprint');
+Route::post('cashier/reprint','CashierController@printing');
 Route::get('cashier/logout', 'AuthController@logout');
 Route::get('cashier/payment/search-oebr','CashierController@showOEBR');
 Route::post('cashier/accept-payment/{id}','CashierController@acceptPayment');
@@ -180,7 +182,7 @@ Route::post('collector/accept-payment/{id}','CollectorController@acceptPayment')
 Route::get('collector/logout', 'AuthController@logout');
 
 /*Cashiering*/
-Route::get('consumer/billing-history','ConsumerCOntroller@showBillingHistory');
+Route::get('consumer/billing-history','ConsumerController@showBillingHistory');
 Route::get('consumer/home','ConsumerController@showHome');
 Route::get('consumer/enroll/{id}','ConsumerController@showEnroll');
 Route::post('consumer/enroll/{id}','ConsumerController@enroll');

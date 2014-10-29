@@ -39,7 +39,7 @@
 		  	 <!-- Left Nav Section -->
 		    <ul class="nav navbar-nav">
 		      <li><a href="{{URL::to('cashier/home')}}"><i class="fa fa-home"></i> Home</a></li>
-		      <li><a href="{{URL::to('cashier/monitoring')}}"><i class="fa fa-print"></i> Reprint Billing Statement</a></li>
+		      <li><a href="{{URL::to('cashier/reprint')}}"><i class="fa fa-print"></i> Reprint Billing Statement</a></li>
 		    </ul>
 
 		    <!-- Right Nav Section -->
