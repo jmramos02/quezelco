@@ -32,6 +32,13 @@ class CollectorController extends BaseController{
 			$account = $this->account->findByOebr(Input::get('oebr'));
 			$consumed = $account->current_reading - $account->previous_reading;
 			$rates = $this->rate->getRates();
+
+			$senior_discount = 0;
+			if(Input::get('is_senior') == 'on')
+			{
+				$senior_discount = $rates->sr_citizen_subsidy;
+			}
+
 			$sum = 0;
 			$sum += $rates->generation_system_charge * $consumed;	
 			$sum += $rates->transmission_system_charge * $consumed;
@@ -58,6 +65,7 @@ class CollectorController extends BaseController{
 				$sum += $penalty;
 				$sum += 112;
 			}
+			$sum -= $sum * $senior_discount;
 			return View::make('collector.payment')->with('bill',$bill)->with('payment',$sum)->with('oebr',$oebr);
 		}
 		
