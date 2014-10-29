@@ -171,11 +171,12 @@ class EloquentBillRepository implements BillRepository{
 
 	public function findAllWithPenalty($locationid)
 	{
-		$penalties = Payment::join('bills', 'bills.id', '=', 'payment.bill_id')
-							->join('accounts', 'accounts.id', '=', 'bills.account_id')
+		$penalties = Bill::join('accounts', 'accounts.id', '=', 'bills.account_id')
 							->join('users', 'users.id', '=', 'accounts.user_id')
 							->join('routes', 'accounts.route_id', '=', 'routes.id')
+							->join('user_location','users.id','=','user_location.user_id')
 							->where('bills.payment_status', '=', 2)
+							->where('user_location.location_id','=', $locationid)
 							->select('users.first_name as firstname', 'users.last_name as lastname',
  										'accounts.oebr_number as oebrnumber', 'routes.route_name as routename')
 							->get();

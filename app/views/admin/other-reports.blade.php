@@ -11,10 +11,10 @@
 					{{Form::select('location',$locations)}}
 					{{Form::submit('Print',array('class' => 'btn btn-primary'))}}
 				{{Form::close()}}
-				<h6>To be Collected Per Town</h6>
+				<!--<h6>To be Collected Per Town</h6>
 				{{Form::open(array('url' => 'admin/reports/tobecollected-per-location'))}}
 					{{Form::submit('Print',array('class' => 'btn btn-primary'))}}
-				{{Form::close()}}
+				{{Form::close()}}-->
 				<h6>Collection By Date</h6>
 				{{Form::open(array('url' => 'admin/reports/collection-by-date'))}}
 					{{Form::label('from','From')}}
