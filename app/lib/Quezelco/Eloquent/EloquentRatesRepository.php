@@ -3,6 +3,7 @@ namespace Quezelco\Eloquent;
 
 use Quezelco\Interfaces\RatesRepository;
 use WheelingRates;
+use RatesHistory;
 use Validator;
 
 class EloquentRatesRepository implements RatesRepository{
@@ -13,6 +14,12 @@ class EloquentRatesRepository implements RatesRepository{
 
 	public function update($inputs){
 		$rates = WheelingRates::find(1);
+		//save rates history first
+		$history = $rates->toJson();
+		$rates_history = new RatesHistory;
+		$rates_history->rates = $history;
+		$rates_history->save();
+		//save the new wheeling rates
 		$rates->generation_system_charge = $inputs['generation_system_charge'];
 		$rates->transmission_system_charge = $inputs['transmission_system_charge'];
 		$rates->system_loss_charge = $inputs['system_loss_charge'];
