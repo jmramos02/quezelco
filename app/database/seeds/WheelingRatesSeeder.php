@@ -23,6 +23,7 @@ class WheelingRatesSeeder extends Seeder{
 		$rates->sr_citizen_subsidy = 0.0004;	
 		$rates->penalty = 0.0005;
 		$rates->reconnection_fee = 0.0006;
+		$rates->remarks = 'Sample Remarks';
 		$rates->save();
 	}
 }

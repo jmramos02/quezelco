@@ -170,6 +170,13 @@
 			</div>
 		</div>	
 		<div class="col-md-12">
+			<div class="col-md-12">
+				<h6>Remarks</h6>
+				{{Form::textarea('remarks',$rates->remarks, array('class' => 'form-control'))}}
+				<div class="error">{{$errors->first('remarks')}}</div>
+			</div>
+		</div>
+		<div class="col-md-12">
 			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> Save </button>
 		</div>
 			<div class="modal fade modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

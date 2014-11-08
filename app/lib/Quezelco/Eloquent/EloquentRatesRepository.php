@@ -40,6 +40,7 @@ class EloquentRatesRepository implements RatesRepository{
 		$rates->sr_citizen_subsidy = $inputs['sr_citizen_subsidy']; 	
 		$rates->penalty = $inputs['penalty'];
 		$rates->reconnection_fee = $inputs['reconnection_fee'];
+		$rates->remarks = $inputs['remarks'];
 		return $rates->save();
 	}
 
