@@ -5,12 +5,36 @@
 				<h2>Other Reports</h2>
 		</div>
 			<div class="col-md-12">
-				<h6>Collection Per Location</h6>
-				{{Form::open(array('url' => 'admin/reports/collection-per-location'))}}
-					{{Form::label('location','Select Location')}}
-					{{Form::select('location',$locations)}}
-					{{Form::submit('Print',array('class' => 'btn btn-primary'))}}
-				{{Form::close()}}
+				<div class="col-md-4">
+					<h6>User List</h6>
+					<li>{{HTML::link('admin/reports/user-list','Print', array('class' => 'btn btn-primary'))}}</li>
+				</div>
+
+				<div class="col-md-4">	
+					<h6>Location List</h6>
+		      		<li>{{HTML::link('admin/reports/location-list','Print',array('class' => 'btn btn-primary'))}}</li>
+				</div>
+				
+				<div class="col-md-4">
+					<h6>List of Brgy's</h6>
+		     	 	<li>{{HTML::link('admin/reports/route-list',"Print",array('class' => 'btn btn-primary'))}}</li>
+				</div>
+
+				<div class="col-md-4">
+						<h6>Consumer List</h6>
+		      		<li>{{HTML::link('admin/reports/consumer-list', 'Print',array('class' => 'btn btn-primary'))}}</li>
+				</div>
+
+				<div class="col-md-4">
+					<h6>List of SMS Enrolled Accounts</h6>
+		      		<li>{{HTML::link('admin/reports/sms-list', 'Print',array('class' => 'btn btn-primary'))}}</li>
+				</div>
+
+				<div class="col-md-4">
+					<h6>List of User Logs</h6>
+		      		<li>{{HTML::link('admin/reports/user-logs', 'Print',array('class' => 'btn btn-primary'))}}</li>
+				</div>
+		
 				<!--<h6>To be Collected Per Town</h6>
 				{{Form::open(array('url' => 'admin/reports/tobecollected-per-location'))}}
 					{{Form::submit('Print',array('class' => 'btn btn-primary'))}}

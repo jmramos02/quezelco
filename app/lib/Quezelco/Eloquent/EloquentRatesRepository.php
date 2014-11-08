@@ -18,6 +18,7 @@ class EloquentRatesRepository implements RatesRepository{
 		$history = $rates->toJson();
 		$rates_history = new RatesHistory;
 		$rates_history->rates = $history;
+		$rates_history->before_date = $rates->updated_at;
 		$rates_history->save();
 		//save the new wheeling rates
 		$rates->generation_system_charge = $inputs['generation_system_charge'];

@@ -31,7 +31,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">QUEZELCO</a>
+	      <a class="navbar-brand" href="#">Admin/IT Module</a>
 	    </div>
 
 		  <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -80,19 +80,8 @@
 		      	</ul>
 		      	
 		      </li>
-		        <li class = "dropdown">
-		      	<a href="" class="dropdown-toggle" data-toggle="dropdown">
-		      		<i class="fa fa-file-pdf-o"> </i> Reports <span class="caret"></span></a>
-		      	<ul class="dropdown-menu" role="menu">
-		      		<li>{{HTML::link('admin/reports/user-list','User List')}}</li>
-		      		<li>{{HTML::link('admin/reports/location-list','Location List')}}</li>
-		      		<li>{{HTML::link('admin/reports/route-list',"List of Brgy's")}}</li>
-		      		<li>{{HTML::link('admin/reports/consumer-list', 'Consumer List')}}</li>
-		      		<li>{{HTML::link('admin/reports/sms-list', 'List of SMS Enrolled Accounts')}}</li>
-		      		<li>{{HTML::link('admin/reports/user-logs', 'List of User Logs')}}</li>
-		      		<li>{{HTML::link('admin/reports/others','Others')}}</li>
-		      	</ul>
-		      	</li>
+		   <li><a href="{{URL::to('admin/reports/others')}}"><i class="fa fa-file-pdf-o"> </i> Reports</a></li>
+
 		    </ul>
 
 		    <!-- Right Nav Section -->
@@ -100,8 +89,7 @@
 		      <li><a href="{{URL::to('admin/my-account')}}"><i class="fa fa-user"></i> My Account</a></li>
 		      <li><a href="{{URL::to('admin/logout')}}"><i class="fa fa-power-off"></i>Logout</a></li>
 		    </ul>
-		  </div>
-	</nav>
+		  </div>	</nav>
 	<!-- End of Navigation -->
 	<!-- Main Content -->
 	@yield('content')

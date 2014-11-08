@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWheeliingRatesHistoryTable extends Migration {
+class AddBeforeDateRatesHistory2 extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,8 @@ class CreateWheeliingRatesHistoryTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('rates_history',function($table){
-			$table->increments('id');
-			$table->string('rates');
-			$table->date('before_date');
-			$table->timestamps();
+		Schema::table('rates_history',function($table){
+			$table->date('before_date');;
 		});
 	}
 
@@ -27,7 +24,7 @@ class CreateWheeliingRatesHistoryTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('rates_history');
+		//
 	}
 
 }
