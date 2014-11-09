@@ -51,6 +51,7 @@
 			      <th>Status</th>
 			      <th>Current Reading</th>
 			      <th>Previous Reading</th>
+			      <th>View Billing History</th>
 			      <th>Change Status</th>
 			      <th>Edit Information</th>
 			      <th>Enter Reading</th>
@@ -74,6 +75,7 @@
 			      </td>
 			      <td>{{number_format($account->current_reading,2)}}</td>
 			      <td>{{number_format($account->previous_reading,2)}}</td>
+			      <td>{{HTML::link('admin/view-billing-history/' . $account->id,'View',array('style' => 'color:green'))}}</td>
 			      <td>{{HTML::link('admin/change-status/' . $account->id,'Change Status',array('style' => 'color:green'))}}</td>
 			      <td>{{HTML::link('admin/account/' . $account->id . '/edit','Edit Information',array('style' => 'color:green'))}}</td>
 			    	<td>

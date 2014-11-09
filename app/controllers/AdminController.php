@@ -48,7 +48,15 @@ class AdminController extends BaseController{
 	}
 
 	public function showMonitoring(){
-		return View::make('admin.monitoring');
+		$locations = $this->location->all();
+		$arrayLocation = array();
+		$arrayRole = array();
+		foreach ($roles as $role) {
+			if($role->name != $this->consumerRole){
+				$arrayRole[$role->id] = $role->name; 
+			}
+		}
+		return View::make('admin.monitoring')->with('locations',$arrayLocation);
 	}
 
 	public function showReports(){
@@ -101,7 +109,8 @@ class AdminController extends BaseController{
                         'throttle' => 'throttle',
                         'users_groups' => 'users_groups',
                         'user_location' => 'user_location',
-                        'wheeling_rates' => 'wheeling_rates');
+                        'wheeling_rates' => 'wheeling_rates',
+                        'rates_history' => 'rates_history');
 		$locations = $this->location->all();
 		$arrayLocation = array();
 		foreach($locations as $location){

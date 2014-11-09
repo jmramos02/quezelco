@@ -115,6 +115,7 @@ Route::get('/admin/add-user','UserMaintenanceController@showAddUser');
 Route::get('/admin/home','AdminController@searchLogs');
 Route::get('/admin/my-account','UserMaintenanceController@showMyAccount');
 Route::post('/admin/my-account','UserMaintenanceController@updatePassword');
+Route::get('/admin/view-billing-history/{id}','BillingController@viewBillingHistory');
 
 //crud ng users
 Route::put('/admin/update-user/{id}','UserMaintenanceController@modifyUser');

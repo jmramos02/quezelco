@@ -372,4 +372,10 @@ class BillingController extends BaseController {
         Fpdf::Output();
         exit;
 	}
+
+    public function viewBillingHistory($id){
+        $account = $this->account->find($id);
+        $bills = $this->bill->findByAccount($account);
+        return View::make('admin.billing.billing-history')->with('bills', $bills);
+    }
 }
