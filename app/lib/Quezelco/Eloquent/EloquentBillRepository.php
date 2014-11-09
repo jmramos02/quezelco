@@ -135,7 +135,7 @@ class EloquentBillRepository implements BillRepository{
 
 	public function findNextPaymentById($id){
 		$account = Account::find($id);
-		return $bill = Bill::where('account_id', '=', $account->id)->where('payment_status', '=' , 0)->orderBy('id','desc')->first();
+		return $bill = Bill::where('account_id', '=', $account->id)->where('payment_status', '!=' , 1)->orderBy('id','desc')->first();
 	}
 
 	public function findAllPaymentsByLocation($location_id){
