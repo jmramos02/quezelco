@@ -130,25 +130,9 @@ class AjaxController extends BaseController{
             				 ->where('user_location.location_id','=',$location_id)
             				 ->where('bill.payment_status', '=','2')
             				 ->count();
-		$paid = Bill::join('accounts', 'bill.account_id', '=', 'accounts.id')
-							 ->join('users','accounts.user_id','accounts.id')
-            				 ->join('locations', 'user_location.location_id', '=', 'locations.id')
-            				 ->join('routes', 'locations.id', '=', 'routes.location_id')
-            				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
-            				 ->where('user_location.location_id','=',$location_id)
-            				 ->where('bill.payment_status', '=','0')
-            				 ->count();
-		$notYetPaid = Bill::join('accounts', 'bill.account_id', '=', 'accounts.id')
-							 ->join('users','accounts.user_id','accounts.id')
-            				 ->join('locations', 'user_location.location_id', '=', 'locations.id')
-            				 ->join('routes', 'locations.id', '=', 'routes.location_id')
-            				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
-            				 ->where('user_location.location_id','=',$location_id)
-            				 ->where('bill.payment_status', '=','1')
-            				 ->count();
 		}
-		$return[0] = $paid;
-		$return[1] = $notYetPaid;
+		$return[0] = Bill::all()->count() - ($penalties + $disconnection);
+		$return[1] = $penalties + $disconnection;
 		$return[2] = $penalties;
 		$return[3] = $disconnection;
 		return Response::json($return);
@@ -184,7 +168,7 @@ class AjaxController extends BaseController{
             				 ->join('routes', 'locations.id', '=', 'routes.location_id')
             				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
             				 ->join('bills', 'accounts.id', '=', 'bills.account_id')
-            				 ->whereRaw('users.id = ? AND payment_status = ?', array($user->id, 0))
+            				 ->whereRaw('users.id = ? AND payment_status = ?', array($user->id, 1))
             				 ->count();
 
             $notYetPaid = User::join('user_location', 'users.id', '=', 'user_location.user_id')
@@ -192,7 +176,7 @@ class AjaxController extends BaseController{
             				 ->join('routes', 'locations.id', '=', 'routes.location_id')
             				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
             				 ->join('bills', 'accounts.id', '=', 'bills.account_id')
-            				 ->whereRaw('users.id = ? AND payment_status = ?', array($user->id, 1))
+            				 ->whereRaw('users.id = ? AND payment_status = ?', array($user->id, 0))
             				 ->count();
 
 			$return[0] = $paid;

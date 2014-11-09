@@ -16,6 +16,7 @@
 		{{Form::model($rates, array('url' => 'admin/wheeling-rates','role' => 'form'))}}	
 		<div class="col-md-12">
 			<h2>Wheeling Rates</h2>
+			<h6>As of {{date('F d, Y', strtotime($rates->created_at))}}</h6>
 		</div>
 		
 		@if(Session::has('error_message'))

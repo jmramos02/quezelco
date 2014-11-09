@@ -183,6 +183,8 @@ class BillingController extends BaseController {
         Fpdf::Ln(5);
         Fpdf::Cell(40,0,"KWH: Consumed: $consumed"  );
         Fpdf::Ln(5);
+        Fpdf::Cell(40,0,"Meter Number: $accountObject->meter_number");
+        Fpdf::Ln(5);
         Fpdf::Cell(40,0,"Due Date: $bill->due_date"  );
         Fpdf::Ln(5);
         Fpdf::Cell(40,0,"Period Covered From: $periodCovered");
