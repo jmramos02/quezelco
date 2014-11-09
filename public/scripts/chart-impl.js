@@ -1,10 +1,19 @@
 $(document).ready(function(){
+	loadAll();
+	$(".location-button").click(function(){
+		loadAll();
+	});
+});
+
+function loadAll(){
+	var location = $('.location').val();
 	var ctx = document.getElementById("myChart").getContext("2d");
 	
 	//get shit data from ajax
 	$.ajax({
 		type : "GET",
 		url : "ajax/customer-status",
+		data : {location : location},
 		dataType : 'json'
 	}).done(function(response){
 		var data = [
@@ -23,7 +32,7 @@ $(document).ready(function(){
 		];	
 		var myDoughnutChart = new Chart(ctx).Doughnut(data);
 	}).error(function(err,status,errorThrown){
-		alert(errorThrown);
+		alert('Zero record found!');
 	});
 
 	//for bargraphh
@@ -32,6 +41,7 @@ $(document).ready(function(){
 	$.ajax({
 		type : "GET",
 		url : "ajax/bill-status",
+		data : {location : location},
 		dataType : 'json'
 	}).done(function(response){
 		var data = {
@@ -50,7 +60,7 @@ $(document).ready(function(){
 		var myBarChart = new Chart(ctx2).Bar(data);
 
 	}).error(function(err,status,errorThrown){
-		alert(errorThrown);
+		alert('Zero record found!');
 	});
 
 	var ctx3 = document.getElementById("payment-history").getContext("2d");
@@ -58,6 +68,7 @@ $(document).ready(function(){
 	$.ajax({
 		type : "GET",
 		url : "ajax/payments-annual/2014",
+		data : {location : location},
 		dataType : 'json'
 	}).done(function(response){
 		
@@ -81,6 +92,6 @@ $(document).ready(function(){
 		});
 
 	}).error(function(err,status,errorThrown){
-		alert(errorThrown);
+		alert('Zero record found!');
 	});
-});
+}

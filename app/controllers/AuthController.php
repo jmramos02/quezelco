@@ -3,7 +3,7 @@
 use Quezelco\Interfaces\AccountRepository as Account;
 use Quezelco\Interfaces\AuthRepository as Auth;
 use Quezelco\Interfaces\LogRepository as Logger;
-
+use Carbon\Carbon;
 class AuthController extends BaseController{
 
 	public function __construct(Auth $auth, Logger $logger, Account $account){
@@ -13,6 +13,33 @@ class AuthController extends BaseController{
 	}
 
 	public function validateLogin(){
+		
+		//haha
+
+		$accounts = $this->account->all();
+		$count = $this->account->all()->count();
+		if($count != 0){
+			foreach($accounts as $account){
+				$bill = Bill::where('account_id', '=', $account->id)->where('payment_status', '=' , 0)->orderBy('id','desc')->first();
+				if(!is_null($bill)){
+					$carbonDate = Carbon::parse($bill->due_date);
+					$dateDiff = $carbonDate->diffInDays(Carbon::now());
+					if($carbonDate->lte(Carbon::now())){
+						if($dateDiff >= 4 || $dateDiff < 10){
+							$bill->payment_status = 2;
+						}else{
+							$bill->payment_status = 3;
+							$account->status = 0;
+						}
+						$bill->save();
+						$account->save();
+					}
+					
+				}
+
+			}
+		}
+
 		$username = Input::get('username');
 		$password = Input::get('password');
 		$returnUrl = "";

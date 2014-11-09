@@ -50,11 +50,9 @@ class AdminController extends BaseController{
 	public function showMonitoring(){
 		$locations = $this->location->all();
 		$arrayLocation = array();
-		$arrayRole = array();
-		foreach ($roles as $role) {
-			if($role->name != $this->consumerRole){
-				$arrayRole[$role->id] = $role->name; 
-			}
+		$arrayLocation[0] = 'All';
+		foreach($locations as $location){
+			$arrayLocation[$location->id] = $location->location_name;
 		}
 		return View::make('admin.monitoring')->with('locations',$arrayLocation);
 	}

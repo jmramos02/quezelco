@@ -48,9 +48,27 @@ class AjaxController extends BaseController{
 
 	public function customerStatus(){
 		$return = array();
-
-		$connected = Account::where('status', '=', '1')->count();
-		$disconnected = Account::where('status', '=' ,'0')->count();
+		$location_id = Input::get('location');
+		if($location_id != 0){
+			$connected = User::join('user_location', 'users.id', '=', 'user_location.user_id')
+            				 ->join('locations', 'user_location.location_id', '=', 'locations.id')
+            				 ->join('routes', 'locations.id', '=', 'routes.location_id')
+            				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
+            				 ->where('user_location.location_id','=',$location_id)
+            				 ->where('accounts.status', '=','1')
+            				 ->count();
+			$disconnected = User::join('user_location', 'users.id', '=', 'user_location.user_id')
+	            				 ->join('locations', 'user_location.location_id', '=', 'locations.id')
+	            				 ->join('routes', 'locations.id', '=', 'routes.location_id')
+	            				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
+	            				 ->where('user_location.location_id','=',$location_id)
+	            				 ->where('accounts.status', '=','0')
+	            				 ->count();
+		}else{
+			$connected = Account::where('status','=','1')->count();
+			$disconnected = Account::where('status','=','0')->count();
+		}
+		
 		$return[0] = $connected;
 		$return[1] = $disconnected;
 		return Response::json($return);
@@ -89,10 +107,46 @@ class AjaxController extends BaseController{
 
 	public function billingStatus(){
 		$return = array();
-		$disconnection = Bill::where('payment_status' , '=' , 3)->count();
-		$penalties = Bill::where('payment_status' ,'=' , 2)->count();
-		$paid = Bill::where('payment_status' , '=' , 0)->count();
-		$notYetPaid = Bill::where('payment_status', '=' , 1)->count();
+		$location_id = Input::get('location');
+		if($location_id == 0){
+			$disconnection = Bill::where('payment_status' , '=' , 3)->count();
+			$penalties = Bill::where('payment_status' ,'=' , 2)->count();
+			$paid = Bill::where('payment_status' , '=' , 0)->count();
+			$notYetPaid = Bill::where('payment_status', '=' , 1)->count();
+		}else{
+		$disconnection = Bill::join('accounts', 'bill.account_id', '=', 'accounts.id')
+							 ->join('users','accounts.user_id','accounts.id')
+            				 ->join('locations', 'user_location.location_id', '=', 'locations.id')
+            				 ->join('routes', 'locations.id', '=', 'routes.location_id')
+            				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
+            				 ->where('user_location.location_id','=',$location_id)
+            				 ->where('bill.payment_status', '=','3')
+            				 ->count();
+		$penalties = Bill::join('accounts', 'bill.account_id', '=', 'accounts.id')
+							 ->join('users','accounts.user_id','accounts.id')
+            				 ->join('locations', 'user_location.location_id', '=', 'locations.id')
+            				 ->join('routes', 'locations.id', '=', 'routes.location_id')
+            				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
+            				 ->where('user_location.location_id','=',$location_id)
+            				 ->where('bill.payment_status', '=','2')
+            				 ->count();
+		$paid = Bill::join('accounts', 'bill.account_id', '=', 'accounts.id')
+							 ->join('users','accounts.user_id','accounts.id')
+            				 ->join('locations', 'user_location.location_id', '=', 'locations.id')
+            				 ->join('routes', 'locations.id', '=', 'routes.location_id')
+            				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
+            				 ->where('user_location.location_id','=',$location_id)
+            				 ->where('bill.payment_status', '=','0')
+            				 ->count();
+		$notYetPaid = Bill::join('accounts', 'bill.account_id', '=', 'accounts.id')
+							 ->join('users','accounts.user_id','accounts.id')
+            				 ->join('locations', 'user_location.location_id', '=', 'locations.id')
+            				 ->join('routes', 'locations.id', '=', 'routes.location_id')
+            				 ->join('accounts', 'routes.id', '=', 'accounts.route_id')
+            				 ->where('user_location.location_id','=',$location_id)
+            				 ->where('bill.payment_status', '=','1')
+            				 ->count();
+		}
 		$return[0] = $paid;
 		$return[1] = $notYetPaid;
 		$return[2] = $penalties;
@@ -147,10 +201,6 @@ class AjaxController extends BaseController{
 			$return[3] = $disconnection;
 			return Response::json($return);
         }
-	}
-
-	public function logsStatus(){
-
 	}
 
 	public function paymentHistory(){
