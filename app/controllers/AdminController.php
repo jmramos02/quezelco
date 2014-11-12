@@ -63,7 +63,12 @@ class AdminController extends BaseController{
 
 	public function showWheelingRates(){
 		$rate = $this->rates->getRates();
-		return View::make('admin.wheeling-rates')->with('rates',$rate);
+		$history = RatesHistory::all();
+		$rates_history = array();
+		foreach($history as $h){
+			$rates_history[$h->id] = $h->before_date;
+		}
+		return View::make('admin.wheeling-rates')->with('rates',$rate)->with('rates_history',$rates_history);
 	}
 
 	/*Wheeling Rates*/

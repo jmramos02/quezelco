@@ -483,4 +483,83 @@ class ReportController extends BaseController{
         Fpdf::Output();
         exit;
     }
+
+    public function viewRatesHistory(){
+        $history = RatesHistory::find(Input::get('rates_history'));
+        $rates = json_decode($history->rates,true);
+        Fpdf::AddPage();
+        Fpdf::SetFont('Courier','B',16);
+        Fpdf::Cell(190,10,'Quezelco Electronic Cooperative',0,1,'C');
+        Fpdf::SetFont('Courier','',11);
+        Fpdf::Cell(190,10,'Rates as of ' . $history->before_date,0,1,'C');
+        Fpdf::SetFont('Courier','','9');
+
+        Fpdf::SetFillColor(255);
+        Fpdf::SetTextColor(0);
+
+        Fpdf::Cell(100,5,'Generation System Charge: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['generation_system_charge'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Transmission System Charge: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['transmission_system_charge'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'System Loss Charge: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['system_loss_charge'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Distribution System Charge: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['dist_system_charge'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Retail End User Charge: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['retail_end_user_charge'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Retail Customer Charge: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['retail_customer_charge'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Lifeline Subsidy: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['lifeline_subsidy'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Previous Years Adjust Power Cost: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['prev_yrs_adj_pwr_cost'],0,0,'L',true);
+         Fpdf::Ln();
+        Fpdf::Cell(100,5,'Contribution For Capex:',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['contribution_for_capex'],0,0,'L',true);
+         Fpdf::Ln();
+        Fpdf::Cell(100,5,'Generation Vat',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['generation_vat'],0,0,'L',true);
+         Fpdf::Ln();
+        Fpdf::Cell(100,5,'Transmission Vat:',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['transmission_vat'],0,0,'L',true);
+         Fpdf::Ln();
+        Fpdf::Cell(100,5,'System Loss Vat: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['system_loss_vat'],0,0,'L',true);
+         Fpdf::Ln();
+        Fpdf::Cell(100,5,'Distribution Vat: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['distribution_vat'],0,0,'L',true);
+         Fpdf::Ln();
+        Fpdf::Cell(100,5,'Others:  ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['others'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Missionary Electrification:  ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['missionary_electrificxn'],0,0,'L',true);
+         Fpdf::Ln();
+        Fpdf::Cell(100,5,'Environmental Charge:  ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['environmental_charge'],0,0,'L',true);
+         Fpdf::Ln();
+        Fpdf::Cell(100,5,'Npc Stranded Cont Cost: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['npc_stranded_cont_cost'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Senior Citizen Subsidy: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['sr_citizen_subsidy'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Penalty: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['penalty'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Reconnection Fee: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['reconnection_fee'],0,0,'L',true);
+        Fpdf::Ln();
+        Fpdf::Cell(100,5,'Remarks: ',0,0,'L',true);
+        Fpdf::Cell(80,5,$rates['remarks'],0,0,'L',true);
+        Fpdf::Output();
+        exit;
+    }
 }

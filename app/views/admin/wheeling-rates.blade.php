@@ -12,21 +12,31 @@
 			<div class="error">{{$errors->first('password')}}</div>
 		</div>
 	</div>
+
 	<div class="container">
-		{{Form::model($rates, array('url' => 'admin/wheeling-rates','role' => 'form'))}}	
 		<div class="col-md-12">
 			<h2>Wheeling Rates</h2>
-			<h6>As of {{date('F d, Y', strtotime($rates->created_at))}}</h6>
+			<h6>As of {{date('F d, Y', strtotime($rates->updated_at))}}</h6>
 		</div>
-		
+
+		<div class = "col-md-12">
+			<div class="col-md-6">
+				<h6>View Rates History</h6>	
+				{{Form::open(array('url' => 'admin/view-rates-history', 'method' => 'get'))}}
+					{{Form::select('rates_history',$rates_history)}}
+					{{Form::submit('Go',array('class' => 'btn btn-primary'))}}
+				{{Form::close()}}
+			</div>			
+		</div>
+		{{Form::model($rates, array('url' => 'admin/wheeling-rates','role' => 'form'))}}
 		@if(Session::has('error_message'))
-			<div class="col-md-4 ">
+			<div class="col-md-12 ">
 				<p class="error">{{Session::get('error_message')}}</p>
 			</div>
 		@endif
 
 		@if(Session::has('message'))
-			<div class="col-md-4 ">
+			<div class="col-md-12">
 				<p class="notification">{{Session::get('message')}}</p>
 			</div>
 		@endif
