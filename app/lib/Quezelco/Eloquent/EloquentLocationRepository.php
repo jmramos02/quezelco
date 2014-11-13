@@ -53,13 +53,13 @@
 
  	public function findDisconnectedConnectedAccounts($locationid, $status)
  	{
- 		$connect = Location::join('routes', 'locations.id', '=', 'routes.location_id')
- 								->join('accounts', 'routes.id', '=', 'accounts.route_id')
- 								->join('users', 'accounts.user_id', '=', 'users.id')
+ 		$connect = Location::join('user_location', 'locations.id', '=', 'user_location.location_id')
+ 								->join('users', 'user_location.user_id', '=', 'users.id')
+ 								->join('accounts','users.id','=','accounts.user_id')
  								->where('accounts.status', '=', $status)
- 								->where('locations.id', '=', $locationid)
+ 								->where('user_location.location_id', '=', $locationid)
  								->select('users.first_name as firstname', 'users.last_name as lastname',
- 										'accounts.oebr_number as oebrnumber', 'routes.route_name as routename')
+ 										'accounts.oebr_number as oebrnumber', 'locations.location_name as routename')
  								->get();
  		return $connect;
  	}

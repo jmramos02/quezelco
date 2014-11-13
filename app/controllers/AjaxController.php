@@ -131,7 +131,7 @@ class AjaxController extends BaseController{
             				 ->where('bill.payment_status', '=','2')
             				 ->count();
 		}
-		$return[0] = Bill::all()->count() - ($penalties + $disconnection);
+		$return[0] = Payment::all()->count();
 		$return[1] = $penalties + $disconnection;
 		$return[2] = $penalties;
 		$return[3] = $disconnection;

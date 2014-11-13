@@ -26,8 +26,7 @@ class ReportController extends BaseController{
         }
         $headers = array(
             'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="ExportFileName.csv"',
-        );
+            'Content-Disposition' => 'attachment; filename="ExportFileName.csv"', );
  
         return Response::make(rtrim($output, "\n"), 200, $headers);
 
