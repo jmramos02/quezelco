@@ -19,6 +19,7 @@
 					      <th>Account Number</th>
 					      <th>Due Date</th>
 					      <th>Payment Status</th>
+					      <th>Due</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -37,6 +38,7 @@
 								@elseif($bill->payment_status == 3)
 									<td>For Disconnection</td>
 								@endif
+								<td>{{($bill->payment()->first()->payment) - ($bill->payment()->first()->change)}}</td>
 							</tr>
 					    @endforeach
 					  </tbody>
