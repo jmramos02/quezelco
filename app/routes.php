@@ -112,7 +112,7 @@ Route::get('/admin/cashier','AdminController@showCashier');
 Route::get('/admin/disconnected-bills','AdminController@showDisconnectedBills');
 Route::get('/admin/wheeling-rates','AdminController@showWheelingRates');
 Route::get('/admin/add-user','UserMaintenanceController@showAddUser');
-Route::get('/admin/home','AdminController@searchLogs');
+Route::get('/admin/home/search','AdminController@searchLogs');
 Route::get('/admin/my-account','UserMaintenanceController@showMyAccount');
 Route::post('/admin/my-account','UserMaintenanceController@updatePassword');
 Route::get('/admin/view-billing-history/{id}','BillingController@viewBillingHistory');

@@ -20,7 +20,8 @@ class AdminController extends BaseController{
 
 	public function showIndex(){
 		$logs = $this->logger->all()->paginate(10);
-		return View::make('admin.index')->with('logs', $logs);
+		$search_key = "";
+		return View::make('admin.index')->with('logs', $logs)->with('search_key',$search_key);
 	}
 
 	public function searchLogs()
@@ -32,7 +33,7 @@ class AdminController extends BaseController{
 			$logs = $this->logger->searchLogs($search_key);
 		}
 
-		return View::make('admin.index')->with('logs', $logs);
+		return View::make('admin.index')->with('logs', $logs)->with('search_key',$search_key);
 	}
 
 	public function showCashier(){

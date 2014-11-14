@@ -1,3 +1,4 @@
+
 @extends('admin.template')
 @section('head')
 	{{HTML::style("stylesheets/index.css")}}
@@ -7,7 +8,7 @@
 		<div class="container index-container">
 			<div class="col-md-8">
 					<h3>User Logs</h3>
-					{{Form::open(array('url' => 'admin/home'))}}
+					{{Form::open(array('url' => 'admin/home/search','method' => 'get'))}}
 					<div class="col-md-7 options-left">
 					<form role="form" action="">
 						<div class="form-group">
@@ -55,7 +56,7 @@
 							</tbody>
 						</table>
 					</div>
-					{{$logs->links()}}
+					{{$logs->appends(array('search_key' => $search_key))->links()}}
 					</div>		
 			</div>
 			
