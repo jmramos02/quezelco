@@ -95,6 +95,9 @@ class CashierController extends BaseController{
 			$payment->save();
 			$bill->payment_status = 1;
 			$bill->save();
+            $account = $bill->account()->first();
+            $account->status = 1;
+            $account->save();
 			Session::flash('message','Payment Accepted! Change is: ' . $payment->change);
 			return Redirect::to('cashier/home');
 		}

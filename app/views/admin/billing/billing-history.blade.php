@@ -13,7 +13,7 @@
 					<div class="table-responsive">
 					<table class="table table-striped">
 					  <thead>
-					    <tr>
+						<tr>
 					      <th>#</th>
 					      <th>OEBR Number</th>
 					      <th>Account Number</th>
@@ -26,8 +26,8 @@
 					    @foreach($bills as $bill)
 							<tr>
 								<td>{{$bill->id}}</td>
-								<td>{{$bill->account->first()->oebr_number}}</td>
-								<td>{{$bill->account->first()->account_number}}</td>
+								<td>{{$bill->account()->first()->oebr_number}}</td>
+								<td>{{$bill->account()->first()->account_number}}</td>
 								<td>{{$bill->due_date}}</td>
 								@if($bill->payment_status == 0)
 									<td>Not Yet Paid</td>
@@ -38,7 +38,13 @@
 								@elseif($bill->payment_status == 3)
 									<td>For Disconnection</td>
 								@endif
-								<td>{{($bill->payment()->first()->payment) - ($bill->payment()->first()->change)}}</td>
+								<td>
+								@if(is_null($bill->payment()->first()))
+									Not yet paid
+								@else
+									{{number_format(($bill->payment()->first()->payment) - ($bill->payment()->first()->change),2)}}
+								@endif
+								</td>
 							</tr>
 					    @endforeach
 					  </tbody>
